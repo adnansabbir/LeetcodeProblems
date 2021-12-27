@@ -20,5 +20,4 @@ class Solution:
     
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         kPoints = heapq.nsmallest(k, [Point(p) for p in points])
-        print(kPoints)
         return [p.val for p in kPoints]
