@@ -9,12 +9,13 @@ class Point:
     
     def __init__(self, val: List[int]):
         self.val = val
+        self.distance = self.getDistance(self.val)
     
     def __repr__(self):
-        return f"{self.val} -> {self.getDistance(self.val)}"
+        return f"{self.val} -> {self.distance}"
 
     def __lt__(self, other: "Point"):
-        return self.getDistance(self.val)<self.getDistance(other.val)
+        return self.distance < other.distance
 
 class Solution:
     
