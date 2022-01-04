@@ -5,6 +5,5 @@ class Solution:
         if n == 1:
             return 0
         
-        helper = 2**n.bit_length()-1
-        return n^helper
+        return n^(2**n.bit_length()-1)
         
