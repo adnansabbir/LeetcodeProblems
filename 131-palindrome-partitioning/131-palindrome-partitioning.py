@@ -2,12 +2,18 @@ class Solution:
     def partition(self, s: str) -> List[List[str]]:
         partition = []
         result = []
+        palindromes = {}
     
         def isPalindrome(s: str, start: int, end: int):
             if start == end or end<start:
                 return True
             
-            return s[start] == s[end] and isPalindrome(s, start+1, end-1)
+            key = f"{start}-{end}"
+            if key in palindromes:
+                return palindromes[key]
+            
+            palindromes[key] = s[start] == s[end] and isPalindrome(s, start+1, end-1)
+            return palindromes[key]
     
         def dfs(i: int):
             if i >= len(s):
