@@ -27,7 +27,6 @@ class Solution:
             if total_onboard>capacity:
                 return False
         
-        print(onboards)
         return True
         
         
