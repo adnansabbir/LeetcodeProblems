@@ -7,15 +7,20 @@ import random
 class Solution:
 
     def __init__(self, head: Optional[ListNode]):
-        self.node = []
-        temp = head
-        while temp != None:
-            self.node.append(temp)
-            temp = temp.next
-        
+        self.head = head
 
     def getRandom(self) -> int:
-        return self.node[random.randint(0, len(self.node)-1)].val
+        size = 1
+        value = 0
+        node = self.head
+        
+        while node:
+            if random.random() < (1/size):
+                value = node.val
+            node = node.next
+            size +=1
+        
+        return value
 
 
 # Your Solution object will be instantiated and called as such:
