@@ -13,18 +13,18 @@ class Solution:
         
         self.total = 0    
         
-        def sum_to_root(root: Optional[TreeNode], parent: str):
+        def sum_to_root(root: Optional[TreeNode], parent: int):
             
             if not root.right and not root.left:
-                self.total += int(f'{parent}{root.val}', 2)
+                self.total += (parent<<1) + root.val
                 return
             
             if root.left:
-                sum_to_root(root.left, f'{parent}{root.val}')
+                sum_to_root(root.left, (parent<<1) + root.val)
             
             if root.right:
-                sum_to_root(root.right, f'{parent}{root.val}')
+                sum_to_root(root.right, (parent<<1) + root.val)
         
-        sum_to_root(root, '')
+        sum_to_root(root, 0)
 
         return self.total
