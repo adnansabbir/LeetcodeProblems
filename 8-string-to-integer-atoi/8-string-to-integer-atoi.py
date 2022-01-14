@@ -38,15 +38,12 @@ class Solution:
         max_last_num = 7 if isNegative else 6
         result = 0
         
-        print(s, len(s))
-        
         for ch in s:
             if result < max_num or (result == max_num and int(ch) <= max_last_num):
                 result = (result*10) + int(ch)
             elif isNegative:
                 return (2**31) * -1
             else:
-                print(result, max_num, int(ch), max_last_num)
                 return (2**31 - 1)
         
         if isNegative:
