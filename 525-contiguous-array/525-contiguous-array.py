@@ -8,7 +8,7 @@ class Solution:
             count = count + 1 if num else count - 1
             if count not in hash_count:
                 hash_count[count] = i
-            else:
-                max_sub = max(max_sub, i - hash_count[count])
+            elif i - hash_count[count] > max_sub:
+                max_sub = i - hash_count[count]
 
         return max_sub
