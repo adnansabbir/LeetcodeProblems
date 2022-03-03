@@ -4,18 +4,21 @@ class Solution:
         return (n*(n+1))//2
     
     def numberOfArithmeticSlices(self, nums: List[int]) -> int:
-        result = 0
-        
         if len(nums)<3:
-            return result
+            return 0
         
-        prev_diff = nums[1] - nums[0]
+        nums.append(1000000)
+        lastNum = nums[0]
+        nums[0] = nums[1] - nums[0]
         
-        for i in range(2, len(nums)):
-            diff = nums[i] - nums[i-1]
-            if diff != prev_diff:
-                return self.getTotalSubSeq(i) + self.numberOfArithmeticSlices(nums[i-1:])
+        result = 0
+        lastBreakPoint = 0
+        
+        for i in range(1, len(nums)):
+            lastNum, nums[i] = nums[i], nums[i] - lastNum
             
-            result = self.getTotalSubSeq(i+1)
+            if nums[i] != nums[i-1]:
+                result += self.getTotalSubSeq(i - lastBreakPoint)
+                lastBreakPoint = i - 1
         
         return result
