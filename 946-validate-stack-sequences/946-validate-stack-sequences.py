@@ -13,6 +13,5 @@ class Solution:
             
             pushP+=1
         
-        print(result)
         return len(result) == 0
             
