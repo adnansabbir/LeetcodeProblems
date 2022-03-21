@@ -6,7 +6,8 @@ class MyStack:
     
     def push(self, x: int) -> None:        
         self.cq.append(x)
-        for i in range(len(self.cq)-1):
+        r = len(self.cq)-1
+        for i in range(r):
             self.cq.append(self.cq.pop(0))
         
 
