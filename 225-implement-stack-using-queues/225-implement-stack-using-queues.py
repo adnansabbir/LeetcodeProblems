@@ -1,27 +1,18 @@
 class MyStack:
 
     def __init__(self):
-        self.q1 = []
-        self.q2 = []
-        self.cq = self.q1
+        self.cq = []
         
         
 
     def swapQs(self, val: int):
-        if self.q1:
-            self.cq = self.q2
-            self.q2.append(val)
-            while self.q1:
-                self.q2.append(self.q1.pop(0))
-        else:
-            self.cq = self.q1
-            self.q1.append(val)
-            while self.q2:
-                self.q1.append(self.q2.pop(0))
+        self.cq.append(val)
+        for i in range(len(self.cq)-1):
+            self.cq.append(self.cq.pop(0))
     
     def push(self, x: int) -> None:        
         self.swapQs(x)
-        print(x, self.q1, self.q2, self.cq)
+        # print(x, self.q1, self.q2, self.cq)
         
 
     def pop(self) -> int:
