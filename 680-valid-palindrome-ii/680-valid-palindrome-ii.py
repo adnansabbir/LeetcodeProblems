@@ -1,15 +1,20 @@
 class Solution:
-    def validPalindrome(self, s: str, start = 0, end = None, canRemove = 1) -> bool:
-        if end == None:
-            end = len(s) - 1
+    def validPalindrome(self, s: str) -> bool:
+        def isPalindrome(s: str, start: int, end: int) -> bool:
+            while start<end:
+                if s[start] != s[end]:
+                    return False
+                start +=1
+                end -=1
+            return True
         
-        while start < end:
-            if s[start] != s[end]:
-                canRemove -=1
-                return self.validPalindrome(s, start+1, end, canRemove) or self.validPalindrome(s, start, end-1, canRemove) if canRemove+1 else False
+        left, right = 0, len(s) - 1
+        while left < right:
+            if s[left] != s[right]:
+                return isPalindrome(s, left+1, right) or isPalindrome(s, left, right-1)
             
-            start +=1
-            end -=1
+            left +=1
+            right -=1
         
         return True
         
