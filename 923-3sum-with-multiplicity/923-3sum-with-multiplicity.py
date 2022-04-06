@@ -1,38 +1,35 @@
 class Solution:
     def threeSumMulti(self, arr: List[int], target: int) -> int:
-        freq = [0]*101
-        
-        for num in arr:
-            freq[num]+=1
-        
+        arr.sort()
         mod = 10**9 + 7
-        
         total = 0
         
-        for x in range(101):
-            for y in range(x+1, 101):
-                z = target - x - y
-                if y < z <=100:
-                    total += freq[x] * freq[y] * freq[z]
-                    total %= mod
+        for i, x in enumerate(arr):
+            T = target - x
+            j, k = i+1, len(arr) - 1
+            
+            while j < k:
+                if arr[j] + arr[k] < T:
+                    j +=1
+                elif arr[j] + arr[k] > T:
+                    k -=1
+                elif arr[j] != arr[k]:
+                    left  = right = 1
+                    while j + 1 < k and arr[j] == arr[j+1]:
+                        left += 1
+                        j += 1
+                    while k - 1 > j and arr[k] == arr[k-1]:
+                        right += 1
+                        k -= 1
                     
-        for x in range(101):
-            z = target - 2*x
-            if x < z <=100:
-                total += freq[x] * (freq[x] - 1)/2 * freq[z]
-                total %= mod
-                
-        for x in range(101):
-            if (target - x) % 2 == 0:
-                y = (target - x)//2
-                if x < y <=100:
-                    total += freq[x] * freq[y] * (freq[y] - 1) / 2
+                    total += left * right
                     total %= mod
-                
-        if target % 3 == 0:
-            x = target//3
-            if 0 <= x <=100:
-                total += freq[x] * (freq[x] - 1) * (freq[x] - 2) / 6
-                total %= mod
-        
+                    j += 1
+                    k -= 1
+                else:
+                    total += (k-j + 1) * (k-j) / 2
+                    total %=mod
+                    break
+
         return int(total)
+                    
