@@ -11,15 +11,17 @@
  * @return {TreeNode}
  */
 var convertBST = function(root) {
-    const toGreaterTree = (root, top, rightChild)=> {
-        if(!root) return top
+    let sum = 0
+    const toGreaterTree = (root)=> {
+        if(!root) return root
         
-        root.val += top
-        root.val += !!root.right ? toGreaterTree(root.right, top, true) : 0
-        const result = !!root.left ? toGreaterTree(root.left, root.val, false) : root.val
-        return !!rightChild ? result - top : result
+        toGreaterTree(root.right)
+        sum+=root.val
+        root.val = sum
+        toGreaterTree(root.left)
+        
+        return root
     }
     
-    toGreaterTree(root, 0)
-    return root
+    return toGreaterTree(root)
 };
