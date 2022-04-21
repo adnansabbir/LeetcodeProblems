@@ -1,7 +1,5 @@
 class MyHashSet{
     constructor(key){
-        this.size = Math.pow(10, 5) + 1;
-        this.data = [];
     }
     
     _getHashKey(key){
@@ -9,38 +7,14 @@ class MyHashSet{
     }
     
     add(key){
-        const hashKey = this._getHashKey(key)
-        const bucket = this.data[hashKey]
-        if(bucket === undefined){
-            this.data[hashKey] = [key]
-            return
-        }
-        
-        if(bucket.indexOf(key) !== -1) return
-        
-        bucket.push(key)
+        this[key] = true
     }
     
     remove(key){
-        const hashKey = this._getHashKey(key)
-        const bucket = this.data[hashKey]
-        if(bucket === undefined || bucket.indexOf(key) === -1){
-            return
-        }
-        
-        bucket.pop(bucket.indexOf(key))
-        if(!bucket.length){
-            this.data[hashKey] = undefined
-        }
+        this[key] = false
     }
     
     contains(key){
-        const hashKey = this._getHashKey(key)
-        const bucket = this.data[hashKey]
-        if(bucket === undefined){
-            return false
-        }
-        
-        return bucket.indexOf(key) !== -1
+        return !!this[key]
     }
 }
