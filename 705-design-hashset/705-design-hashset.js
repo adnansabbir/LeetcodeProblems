@@ -2,10 +2,6 @@ class MyHashSet{
     constructor(key){
     }
     
-    _getHashKey(key){
-        return key % this.size;
-    }
-    
     add(key){
         this[key] = true
     }
