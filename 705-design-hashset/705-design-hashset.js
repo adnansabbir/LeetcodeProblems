@@ -1,6 +1,6 @@
 class MyHashSet{
     constructor(key){
-        this.size = Math.pow(10, 6) + 1;
+        this.size = Math.pow(10, 5) + 1;
         this.data = [];
     }
     
