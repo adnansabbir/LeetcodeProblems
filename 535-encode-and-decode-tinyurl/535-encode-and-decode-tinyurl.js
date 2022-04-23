@@ -1,5 +1,5 @@
 baseUrl = "http://tinyurl.com/"
-hashSize = 7
+length = 1
 map = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 encodedURL = {}
 decodedURL = {}
@@ -25,7 +25,7 @@ var encode = function(longUrl) {
       return baseUrl+encodedURL[longUrl]
     }  
     
-    const newHash = _generateRandomHash()
+    const newHash = length++
     encodedURL[longUrl] = newHash
     decodedURL[newHash] = longUrl
     
