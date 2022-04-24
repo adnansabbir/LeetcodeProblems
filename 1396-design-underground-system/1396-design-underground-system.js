@@ -1,20 +1,3 @@
-class SourceDestinationAvgerage{
-    constructor(){
-        this.length = 0
-        this.average = 0
-    }
-    
-    add(value){
-        this.length++
-        this.average -= this.average/(this.length)
-        this.average += value/(this.length)
-    }
-    
-    toString(){
-        return this.average
-    }
-}
-
 class UndergroundSystem{
     constructor(){
         this.src_dest_map = {}
@@ -30,16 +13,19 @@ class UndergroundSystem{
         const key = `${source.stationName}-${stationName}`
         
         if(this.src_dest_map[key] === undefined){
-            this.src_dest_map[key] = new SourceDestinationAvgerage()
+            this.src_dest_map[key] = {avg: 0, size: 0}
         }
         
-        const sourceDestinationAvgerage = this.src_dest_map[key]
-        sourceDestinationAvgerage.add(t - source.t)
+        let  {avg, size} = this.src_dest_map[key]
+        size += 1
+        avg -= avg / size
+        avg += (t - source.t) / size
+        this.src_dest_map[key] = {avg, size}
     }
     
     getAverageTime(startStation, endStation){
         const key = `${startStation}-${endStation}`
-        return this.src_dest_map[key]
+        return this.src_dest_map[key].avg
     }
 }
 
