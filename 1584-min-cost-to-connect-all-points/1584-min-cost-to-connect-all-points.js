@@ -49,8 +49,8 @@ const minCostConnectPoints = function(points) {
     let n = points.length
     const allEdges = []
     
-    for(let currNode = 0; currNode < n; ++currNode){
-        for(let nextNode = currNode + 1; nextNode < n; ++nextNode){
+    for(let currNode = 0; currNode < n; currNode++){
+        for(let nextNode = currNode + 1; nextNode < n; nextNode++){
             let weight = coordinateDistance(points[currNode], points[nextNode])
             allEdges.push([weight, currNode, nextNode])
         }
@@ -62,7 +62,7 @@ const minCostConnectPoints = function(points) {
     let mstCost = 0
     let edgesUsed = 0
     
-    for(let i = 0; i < allEdges.length && edgesUsed < n-1; ++i){
+    for(let i = 0; i < allEdges.length && edgesUsed < n-1; i++){
         let [weight, node1, node2] = allEdges[i]
         
         if(uf.union(node1, node2)){
