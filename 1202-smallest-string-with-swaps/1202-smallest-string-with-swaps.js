@@ -43,18 +43,14 @@ const sortChars = (sArr, group) => {
 
 const smallestStringWithSwaps = (s, pairs) =>  {
     const disjointSet = new DisjointSet(s.length)
-	// console.log(disjointSet.parents)
 	pairs.forEach(pair => {
 		disjointSet.union(pair[0], pair[1])
-		// console.log(disjointSet.parents)
 	})
 	
 	const stringArr = s.split('')
 	const groups = disjointSet.getGroups()
-	// console.log('\n\n', disjointSet.parents)
 	Object.keys(groups).forEach(k => {
 		groups[k].sort((a, b) => a-b)
-		// console.log(groups[k])
 		sortChars(stringArr, groups[k])
 	})
 	
