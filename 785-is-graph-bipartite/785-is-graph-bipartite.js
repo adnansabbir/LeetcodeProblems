@@ -1,27 +1,35 @@
 var isBipartite = function (graph) {
-  let colorArr = new Array(graph.length).fill(-1);
-  colorArr[0] = 1;
-  let queue = [];
-  for (let i = 0; i < graph.length; i++) {
-    if (graph[i].length > 0) {
-      queue.push(i);
+  const visited = new Set()
+  const group = {}
+  
+    const checkBipartite = (edge)=> {
+        const stack = [edge]
+        group[edge] = 'red'
+
+        while(stack.length){
+            const stackSize = stack.length
+            for(let i = 0; i < stackSize; i++){
+                const currEdge = stack.pop()
+                visited.add(currEdge)
+                const alternateColor = group[currEdge] === 'red' ? 'blue' : 'red'
+                
+                for(let adj of graph[currEdge]){
+                    if(group[adj] === group[currEdge]) return false
+                    if(group[adj] === alternateColor) continue
+                    group[adj] = alternateColor
+                    stack.push(adj)
+                }   
+            }
+        }
+        
+        return true
     }
-  }
-
-  while (queue.length) {
-    let top = queue.shift();
-    let neighbors = graph[top];
-
-    for (let node of neighbors) {
-      // console.log("node is ",node);
-      if (colorArr[node] === -1) {
-        colorArr[node] = 1 - colorArr[top];
-        queue.push(node);
-      } else if (colorArr[node] === colorArr[top]) {
-        return false;
+  
+  for(let i = 0; i < graph.length; i++){
+      if(!visited.has(i) && !checkBipartite(i)){
+          return false
       }
-    }
   }
-  // console.log(colorArr);
-  return true;
+    
+    return true
 };
