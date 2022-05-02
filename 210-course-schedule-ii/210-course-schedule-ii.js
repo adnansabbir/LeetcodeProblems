@@ -3,52 +3,56 @@
  * @param {number[][]} prerequisites
  * @return {number[]}
  */
-var findOrder = function(numCourses, prerequisites) {
-    const dependency_map = {}
-    const takenCourses = new Set()
-    let pendingCourses = new Set()
-    const result = []
-    
-    for(let i = 0; i< numCourses; i++){
-        dependency_map[i] = []
+
+class Graph{
+    constructor(size){
+        this.vertexes = {}
+        this.size = size
+        for(let i = 0; i < size; i++){
+            this.vertexes[i] = []
+        }
     }
     
-    
-    for(let pre of prerequisites){
-        const [course, dep] = pre
-        dependency_map[course].push(dep)
+    addEdge(u, v){
+        this.vertexes[u].push(v)
     }
     
-    
-    const takeCourse = (cid) => {
-        if(takenCourses.has(cid)) return true
-        if(pendingCourses.has(cid)) return false
-        if(!dependency_map[cid].length){
-            takenCourses.add(cid)
-            result.push(cid)
-            return true
+    topSortUtil(u, visited, pending, stack){
+        pending[u] = true
+        
+        for(let v of this.vertexes[u]){
+            if(pending[v]) return false
+            if(!visited[v] && !this.topSortUtil(v, visited, pending, stack)) return false
         }
         
-        pendingCourses.add(cid)
+        pending[u] = false
+        visited[u] = true
+        stack.push(u)
         
-        const allDepTaken = dependency_map[cid].map(dep => {
-            return takeCourse(dep)
-        }).every(c => c)
-        
-        if(!allDepTaken) return false
-        
-        pendingCourses.delete(cid)
-        takenCourses.add(cid)
-        result.push(cid)
-
         return true
+    }
+    
+    topSort(){
+        const visited = Array(this.size).fill(false)
+        const pending = Array(this.size).fill(false)
+        const stack = []
         
+        for(let i = 0; i < this.size; i++){
+            if(!visited[i]){
+                if(!this.topSortUtil(i, visited, pending, stack)){
+                    return []
+                }
+            }
+        }
+        
+        return stack
     }
-    
-    for(let i = 0; i< numCourses; i++){
-        if(!takeCourse(i)) return []
-    }
-    
-    return result
+}
+
+var findOrder = function(numCourses, prerequisites) {
+    const graph = new Graph(numCourses)
+    prerequisites.forEach(pre => graph.addEdge(pre[0], pre[1]))
+    return graph.topSort()
+    // console.log(graph.vertexes)
     
 };
