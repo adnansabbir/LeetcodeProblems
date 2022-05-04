@@ -4,21 +4,24 @@
  * @return {number}
  */
 var maxOperations = function(nums, k) {
-    const num_freq = new Proxy({}, {get: (obj, prop) => prop in obj ? obj[prop] : 0})
+    let start = 0
+    let end = nums.length - 1
     
-    let operations = 0
+    nums.sort((a, b)=> parseInt(a) - parseInt(b))
     
-    nums.forEach(n => {
-        const target = k - n
-        const tInNums = num_freq[target]
-        
-        if(tInNums){
-            operations++
-            num_freq[target]--
+    let op = 0
+    while(start < end){
+        const sum = nums[start] + nums[end]
+        if(sum === k){
+            op++
+            end--
+            start++
+        }else if(sum > k){
+            end--
         }else{
-            num_freq[n]++
+            start++
         }
-    })
+    }
     
-    return operations
+    return op
 };
