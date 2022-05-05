@@ -1,8 +1,6 @@
 
 var MyStack = function() {
-    this.q1 = []
-    this.q2 = []
-    this.cQ = this.q2
+    this.q = []
 };
 
 /** 
@@ -10,18 +8,11 @@ var MyStack = function() {
  * @return {void}
  */
 MyStack.prototype.push = function(x) {
-    if(this.cQ === this.q1){
-        this.q2.push(x)
-        while(this.cQ.length){
-            this.q2.push(this.cQ.pop(0))
-        }
-        this.cQ = this.q2
-    }else{
-        this.q1.push(x)
-        while(this.cQ.length){
-            this.q1.push(this.cQ.shift())
-        }
-        this.cQ = this.q1
+    let size = this.q.length
+    this.q.push(x)
+    
+    while(size--){
+        this.q.push(this.q.shift())
     }
 };
 
@@ -29,22 +20,21 @@ MyStack.prototype.push = function(x) {
  * @return {number}
  */
 MyStack.prototype.pop = function() {
-    
-    return this.cQ.shift()
+    return this.q.shift()
 };
 
 /**
  * @return {number}
  */
 MyStack.prototype.top = function() {
-    return this.cQ[0]
+    return this.q[0]
 };
 
 /**
  * @return {boolean}
  */
 MyStack.prototype.empty = function() {
-    return !this.cQ.length
+    return !this.q.length
 };
 
 var obj = new MyStack()
