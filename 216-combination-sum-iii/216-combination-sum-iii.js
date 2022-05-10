@@ -9,11 +9,6 @@ var combinationSum3 = function(k, n) {
     let maxPossible = 45 - ((9-k) * ((9-k)+1)/2)
     if(n < minPossible || n > maxPossible) return []
     
-    if(n === maxPossible){
-        
-    }
-    
-    console.log(maxPossible)
     const result = []
     const getCombinations = (nextIdx, sum, currRes) => {
         if(sum === n && currRes.length === k){
