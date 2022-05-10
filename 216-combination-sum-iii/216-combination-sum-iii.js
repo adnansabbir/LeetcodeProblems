@@ -28,6 +28,6 @@ var combinationSum3 = function(k, n) {
     for(let i = 0; i <= 9 - k; i++){
             getCombinations(i+1, nums[i], [nums[i]])
     }
-    // console.log(result)
+
     return result
 };
