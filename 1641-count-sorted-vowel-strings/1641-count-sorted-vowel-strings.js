@@ -3,16 +3,14 @@
  * @return {number}
  */
 
-const vowels = ['a','e','i','o','u']
-
-const backTrack = (word, idx, n) => {
-    if(word.length === n) return 1
+const backTrack = (count, idx, n) => {
+    if(count === n) return 1
     if(idx === 5) return 0
-    return backTrack(word + vowels[idx], idx, n) + backTrack(word, idx + 1, n)
+    return backTrack(count+1, idx, n) + backTrack(count, idx + 1, n)
 }
 
 var countVowelStrings = function(n) {
     if(n === 1) return 5
     
-    return backTrack("", 0, n)
+    return backTrack(0, 0, n)
 };
