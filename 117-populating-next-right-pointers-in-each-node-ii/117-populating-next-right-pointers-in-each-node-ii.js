@@ -12,26 +12,26 @@
  * @param {Node} root
  * @return {Node}
  */
-var connect = function(root) {
+
+const getLeftMostNext = (root) => {
+    if(!root) return null
+    
+    if(root.left) return root.left
+    if(root.right) return root.right
+    return getLeftMostNext(root.next)
+}
+
+var connect = function(root, next = null) {
     if(!root) return root
     
-    const queue = [root]
+    root.next = next
     
-    while(queue.length){
-        const n = queue.length
-        let currNode = null
-        
-        for(let i = 0; i < n; i++){
-            if(currNode === null){
-                currNode = queue.shift()
-            }else{
-                currNode.next = queue.shift()
-                currNode = currNode.next   
-            }
-            if(currNode.left) queue.push(currNode.left)
-            if(currNode.right) queue.push(currNode.right)
-        }
-    }
+    const nextForRight = getLeftMostNext(next)
+    connect(root.right, nextForRight)
+    
+    const nextForLeft = root.right || nextForRight
+    
+    connect(root.left, nextForLeft)
     
     return root
 };
