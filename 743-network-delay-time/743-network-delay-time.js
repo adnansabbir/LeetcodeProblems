@@ -25,12 +25,9 @@ var networkDelayTime = function(times, n, k) {
     
     while(queue.length){
         const size = queue.length
-        const visited = new Set()
         for(let i = 0; i < size; i++){
             const currNodeVal = queue.shift()
             const currNode = graph[currNodeVal] || []
-            if(visited.has(currNodeVal)) continue
-            else visited.add(currNodeVal)
             
             currNode.forEach(({v,w})=> {
                 const currentTime = Math.min(distanceFromSource[currNodeVal] + w, distanceFromSource[v])
