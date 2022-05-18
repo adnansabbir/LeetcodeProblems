@@ -7,7 +7,6 @@ var criticalConnections = function(n, connections) {
     const result = []
     const disc = new Array(n)
     const low = new Array(n)
-    const parents = new Array(n)
     let time = 0
     
     const adjs = {}
@@ -20,7 +19,6 @@ var criticalConnections = function(n, connections) {
     })
     
     const iterateWithTarjan = (node, parent) => {
-        parents[node] = parent
         disc[node] = time
         low[node] = time
         time++
