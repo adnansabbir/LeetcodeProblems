@@ -12,7 +12,7 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
     for(let i = 0; i < obstacleGrid.length; i++){
         for(let j = 0; j < obstacleGrid[0].length; j++){
 			// if obstacleGrid[i][j] is 1, means we have an obstacle and we mark it as -1 which will help us to avoid it later
-            obstacleGrid[i][j] = obstacleGrid[i][j] * -1
+            obstacleGrid[i][j] = obstacleGrid[i][j] ? -1 : 0
             
 			if(i === 0 && j === 0){
                 obstacleGrid[i][j] = 1
