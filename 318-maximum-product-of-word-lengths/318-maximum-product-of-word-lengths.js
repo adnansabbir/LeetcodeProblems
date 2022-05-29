@@ -3,25 +3,26 @@
  * @return {number}
  */
 
-const hasCommon = (a, b) => {
-    const A = new Set(a.split(''))
-    for(let i = 0; i < b.length; i++){
-        if(A.has(b[i])) return true
+const getBit = (a) => {
+    let result = new Array(26).fill(0)
+    for(let i = 0; i< a.length; i++){
+        const idx = a.charCodeAt(i) - 97
+        result[idx] = 1
     }
-    
-    return false
+    // return result
+    return parseInt(result.join(''), 2)
 }
 
 var maxProduct = function(words) {
-    words.sort((a, b) => b.length  - a.length)
-    let max_size = 0
-    for(let i = 0; i < words.length; i++){
-        for(let j = i + 1; j < words.length; j++){
-            if(!hasCommon(words[i], words[j])){
-                max_size = Math.max(max_size, words[i].length * words[j].length)
+    const bits = words.map(word => getBit(word))
+    let result = 0
+    for(let i = 0; i < bits.length; i++){
+        for(let j = i + 1; j < bits.length; j++){
+            if(!(bits[i] & bits[j])){
+                result = Math.max(result, words[i].length * words[j].length)
             }
         }
     }
     
-    return max_size
+    return result
 };
