@@ -4,8 +4,6 @@
  */
 var totalNQueens = function(n) {
     let result = 0
-    const queens = new Array(n).fill(0).map(_ => new Array(n).fill('.'))
-    
     const placeQueens = (row, bookedCols, bookedPosD, bookedNegD) => {
         
         for(let i = 0; i < n; i++){
@@ -15,11 +13,8 @@ var totalNQueens = function(n) {
             
             if(bookedCols.has(col) || bookedPosD.has(posD) || bookedNegD.has(negD)) continue
             
-            queens[row][i] = "Q"
-            
             if(row === n - 1){
                 result++
-                queens[row][i] = "."
                 continue
             }
             
@@ -32,7 +27,6 @@ var totalNQueens = function(n) {
             bookedCols.delete(col)
             bookedPosD.delete(posD)
             bookedNegD.delete(negD)
-            queens[row][i] = "."
         }
     }
     
