@@ -22,7 +22,6 @@ var maximumUniqueSubarray = function(nums) {
        if(total > max_sum){
            max_sum = total
        }
-       // console.log(total, left, right, elem)
    }
     
     return max_sum
