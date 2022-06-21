@@ -35,10 +35,6 @@ class MaxHeap{
     isEmpty(){
         return this.values.length === 0
     }
-    
-    get(){
-        return this.values
-    }
 }
 
 var furthestBuilding = function(heights, bricks, ladders) {
@@ -78,7 +74,6 @@ var furthestBuilding = function(heights, bricks, ladders) {
         
         currIdx++
     }
-    console.log(bricks, ladders)
     return ans
     
 };
