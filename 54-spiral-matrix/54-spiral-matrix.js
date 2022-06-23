@@ -5,47 +5,56 @@
 
 var spiralOrder = function(matrix) {
     let result = []
-    const helper = (boundingBox) => {
-        const [[top, left], [bottom, right]] = boundingBox
-        if(top > bottom || left > right) return
-        
+    let count = matrix.length * matrix[0].length
+    let [[top, left], [bottom, right]] = [[0,0],[matrix.length - 1, matrix[0].length - 1]]
+    while(count){
         if(top === bottom && right === left){
             result.push(matrix[top][left])
-            return
+            count--
+            break
         }
         
         if(top === bottom){
             for(let i = left; i <= right; i++){
                 result.push(matrix[top][i])
+                count--
             }
-            return
+            break
         }
         
         if(left === right){
             for(let i = top; i <= bottom; i++){
                 result.push(matrix[i][right])
+                count--
             }
-            return
+            break
         }
         
         for(let i = left; i < right; i++){
             result.push(matrix[top][i])
+            count--
         }
         
         for(let i = top; i < bottom; i++){
             result.push(matrix[i][right])
+            count--
         }
         
         for(let i = right; i > left; i--){
             result.push(matrix[bottom][i])
+            count--
         }
         
         for(let i = bottom; i > top; i--){
             result.push(matrix[i][left])
+            count--
         }
-        helper([[top + 1, left + 1],[bottom - 1, right - 1]])
+        
+        top++
+        left++
+        bottom--
+        right--
     }
     
-    helper([[0,0],[matrix.length - 1, matrix[0].length - 1]])
     return result
 };
