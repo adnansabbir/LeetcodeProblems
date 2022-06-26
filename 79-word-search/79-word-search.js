@@ -16,7 +16,6 @@ var exist = function(board, word) {
         
         
         visited.add(`${x}-${y}`)
-        // console.log(x, y, word[idx], visited)
         if(
             idx === word.length - 1 ||
             foundWord(x-1, y, idx + 1) ||
@@ -35,7 +34,6 @@ var exist = function(board, word) {
         for(let j = 0; j < board[0].length; j++){
             if(board[i][j] === word[0]){
                 if(foundWord(i, j, 0)) return true
-                visited.clear()
             }
         }
     }
