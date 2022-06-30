@@ -9,8 +9,6 @@ class Solution:
         for num in reversed(nums[:-1]):
             sum2.append(sum2[-1] + num)
         
-        print(sum1, sum2)
-        
         for i in range(0, len(nums)):
             if sum1[i] == sum2[len(nums) - i - 1]:
                 return i
