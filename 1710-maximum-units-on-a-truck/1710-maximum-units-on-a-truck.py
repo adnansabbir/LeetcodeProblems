@@ -5,14 +5,14 @@ class Solution:
         boxTypes.sort(key=lambda x:x[1],reverse=True)
         total = 0
         
-        for boxes, units in boxTypes:
+        for i in range(len(boxTypes)):
             if truckSize == 0:
                 return total
-            elif truckSize >= boxes:
-                truckSize -= boxes
-                total += boxes*units
+            elif truckSize >= boxTypes[i][0]:
+                truckSize -= boxTypes[i][0]
+                total += boxTypes[i][0]*boxTypes[i][1]
             else:
-                total = total + (truckSize*units)
+                total = total + (truckSize*boxTypes[i][1])
                 truckSize = 0
         
         return total
