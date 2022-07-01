@@ -2,10 +2,10 @@ from queue import PriorityQueue
 
 class Solution:
     def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
-        boxTypes.sort(key=lambda x:x[1],reverse=True)
+        boxTypes.sort(key=lambda x:x[1])
         total = 0
         
-        for i in range(len(boxTypes)):
+        for i in reversed(range(len(boxTypes))):
             if truckSize == 0:
                 return total
             elif truckSize >= boxTypes[i][0]:
