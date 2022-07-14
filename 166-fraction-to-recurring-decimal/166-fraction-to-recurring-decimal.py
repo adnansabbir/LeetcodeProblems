@@ -4,33 +4,30 @@ class Solution:
             return f'{numerator//denominator}'
         
         isNegetive = (numerator < 0 or denominator < 0) and not (numerator < 0 and denominator < 0)
-        numerator = numerator if numerator >=0 else -numerator
-        denominator = denominator if denominator >=0 else -denominator
+        n = abs(numerator)
+        d = abs(denominator)
         
-        res = f"{int(numerator/denominator)}"
-        result = (['-'] if isNegetive else []) + res.split()
-        result.append('.')
-        rem = (numerator % denominator)
-        remainders = {rem: len(result)}
-        # print(result)
-        while rem:
-            if rem < denominator:
-                rem *= 10
+        res = f"-{int(n/d)}" if isNegetive else f"{int(n/d)}"
+        res += '.'
+        n = (n % d)
+        rems = {n: len(res)}
+        
+        while n:
+            if n < d:
+                n *= 10
             
-            while rem < denominator:
-                result.append("0")
-                rem *= 10
+            while n < d:
+                res +="0"
+                n *= 10
             
-            result.append(f"{int(rem/denominator)}")
-            rem = (rem % denominator)
-            if rem in remainders:
+            res += f"{int(n/d)}"
+            n = (n % d)
+            if n in rems:
                 break
-            remainders[rem] = len(result)
+            rems[n] = len(res)
         
-        if not rem:
-            return ''.join(result)
+        if not n:
+            return res
         
-        result.insert(remainders[rem], '(')
-        result.append(')')
-        return "".join(result)
+        return res[:rems[n]] + f"({res[rems[n]:]})"
         
