@@ -6,5 +6,10 @@ class Solution:
             return 1 if key1 < key2 else -1
             
         nums.sort(key=functools.cmp_to_key(compare))
-        return ''.join([str(num) for num in nums]).lstrip('0') or '0'
+        result = ""
+        for num in nums:
+            if not result and not num:
+                continue
+            result += str(num)
+        return result or '0'
         
