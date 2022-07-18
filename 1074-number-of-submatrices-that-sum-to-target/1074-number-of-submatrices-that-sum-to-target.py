@@ -7,7 +7,6 @@ class Solution:
             for j in range(1, n):
                 matrix[i][j] += matrix[i][j-1]
         
-        print(matrix)
         count = 0
         
         for c1 in range(n):
