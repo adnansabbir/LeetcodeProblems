@@ -6,9 +6,8 @@ class Solution:
             return 0 if (y < 0 or y==len(result[x])) else result[x][y]
         
         for i in range(2, numRows + 1):
-            res = []
+            result.append([])
             for j in range(i):
-                res.append(getVal(i-2, j-1) + getVal(i-2, j))
-            result.append(res)
+                result[-1].append(getVal(i-2, j-1) + getVal(i-2, j))
             
         return result
