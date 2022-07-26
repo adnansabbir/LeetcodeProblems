@@ -8,6 +8,6 @@ class Solution:
                 val = j * j
                 if i - val >= 0:
                     dp[i] = min(dp[i], 1 + dp[i-val])
-        return dp[n]
+        return dp[-1]
     
                 
