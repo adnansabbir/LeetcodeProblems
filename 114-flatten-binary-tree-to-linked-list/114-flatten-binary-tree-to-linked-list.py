@@ -5,25 +5,24 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def flatten(self, root: Optional[TreeNode], child: Optional[TreeNode] = None) -> None:
+    def flatten(self, root: Optional[TreeNode]) -> None:
         """
         Do not return anything, modify root in-place instead.
         """
         
-        if not root:
-            return child
+        nodes = []
         
-        if root.right:
-            root.right = self.flatten(root.right, child)
-        elif child:
-            root.right = child
+        def traverse(root: Optional[TreeNode]):
+            if not root:
+                return
+            
+            nodes.append(root)
+            traverse(root.left)
+            traverse(root.right)
         
-        self.flatten(root.left, root.right)
+        traverse(root)
         
-        if root.left:
-            root.right = root.left
-            root.left = None
-        
-        return root
-        
+        for i, node in enumerate(nodes[1:]):
+            nodes[i].left = None
+            nodes[i].right = node
         
