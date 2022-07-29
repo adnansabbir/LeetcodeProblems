@@ -3,8 +3,12 @@
  * @return {number}
  */
 var climbStairs = function(n, cache = {0:0, 1:1, 2:2}) {
-    if(cache[n] !== undefined) return cache[n]
+    let [temp, prev,curr] = [0, 0, 1]
+    for(let i = 0; i<n; i++){
+        temp = curr
+        curr = curr + prev
+        prev = temp
+    }
     
-    cache[n] = climbStairs(n-1, cache) + climbStairs(n-2, cache)
-    return cache[n]
+    return curr
 };
