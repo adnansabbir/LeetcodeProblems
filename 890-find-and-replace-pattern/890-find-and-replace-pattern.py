@@ -7,15 +7,13 @@ class Solution:
             p_m = {}
             w_m = {}
             
-            for i, ch in enumerate(pattern):     
+            for i, ch in enumerate(pattern):
                 if ch not in p_m:
-                    if word[i] not in w_m:
-                        w_m[word[i]] = ch
-                        p_m[ch] = word[i]
-                    else:
-                        return False
-                        
-                elif p_m[ch] != word[i]:
+                    p_m[ch] = word[i]
+                if word[i] not in w_m:
+                    w_m[word[i]] = ch    
+                
+                if p_m[ch] != word[i] or w_m[word[i]] != ch:
                     return False
             
             return True
