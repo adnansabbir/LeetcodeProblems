@@ -5,8 +5,12 @@
  */
 var wordSubsets = function(words1, words2) {
     
+    // f = 26
     const frequency = {}
     
+    // m = word2 length
+    // i = average length of word in word 2
+    // O(m*i)
     for(let i = 0; i < words2.length; i++){
         const tempFreq = {}
         for (let j = 0; j < words2[i].length; j++){
@@ -24,8 +28,7 @@ var wordSubsets = function(words1, words2) {
     }
     
     const totalChars = Object.values(frequency).reduce((a,b)=> a + b, 0)
-    
-    console.log(frequency, totalChars)
+
     
     const matched = (word) => {
         let tempTotal = totalChars
