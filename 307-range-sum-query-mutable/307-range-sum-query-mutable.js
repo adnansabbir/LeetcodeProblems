@@ -20,44 +20,33 @@ class NumArray{
         return new TreeNode(left.sum + right.sum, start, end, left, right)
     }
     
-    print(node, result = []){
-        if(node.start === node.end){
-            result.push(node.sum)
-            return
-        }
+    update(index, val, tree = null){
+        tree = tree || this.tree
+        const mid = parseInt((tree.start + tree.end)/2)
         
-        this.print(node.left, result)
-        this.print(node.right, result)
-        return result
-    }
-    
-    update(index, val, nodeHead = null){
-        const node = nodeHead || this.tree
-        const mid = parseInt((node.start + node.end)/2)
-        
-        if(node.start === node.end){
-            node.sum = val
+        if(tree.start === tree.end){
+            tree.sum = val
             return
         }else if(index <= mid){
-            this.update(index, val, node.left)
+            this.update(index, val, tree.left)
         }else{
-            this.update(index, val, node.right)
+            this.update(index, val, tree.right)
         }
         
-        node.sum = node.left.sum + node.right.sum
+        tree.sum = tree.left.sum + tree.right.sum
     }
     
-    sumRange(start, end, nodeHead = null){
-        const node = nodeHead || this.tree
-        if(node.start === start && node.end === end) return node.sum
-        const mid = parseInt((node.start + node.end)/2)
+    sumRange(start, end, tree = null){
+        tree = tree || this.tree
+        if(tree.start === start && tree.end === end) return tree.sum
+        const mid = parseInt((tree.start + tree.end)/2)
         
         if(start <= mid && end<= mid){
-            return this.sumRange(start, end, node.left)
+            return this.sumRange(start, end, tree.left)
         }else if(start > mid && end > mid){
-            return this.sumRange(start, end, node.right)
+            return this.sumRange(start, end, tree.right)
         }else{
-            return this.sumRange(start, mid, node.left) + this.sumRange(mid+1, end, node.right)
+            return this.sumRange(start, mid, tree.left) + this.sumRange(mid+1, end, tree.right)
         }
     }
 }
