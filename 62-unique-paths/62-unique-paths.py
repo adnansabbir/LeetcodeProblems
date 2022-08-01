@@ -1,22 +1,18 @@
 class Solution:
-    def uniquePaths(self, m: int, n: int, cache = {}) -> int:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[0]*n for _ in range(m)]
+        dp[0][0] = 1
         
-        if m<1 or n<1:
-            return 0
+        def getVal(i: int, j: int)-> int:
+            if i < 0 or j < 0:
+                return 0
+            return dp[i][j]
         
-        if m == 1 and n==1:
-            return 1
+        for i in range(m):
+            for j in range(n):
+                if(i+j == 0):
+                    continue
+                dp[i][j] = getVal(i-1, j) + getVal(i, j-1)
         
-        key = "{}.{}".format(m,n)
-        
-        if key in cache:
-            return cache[key]
-        
-        top = self.uniquePaths(m-1, n, cache)
-        left = self.uniquePaths(m, n-1, cache)
-        
-        cache[key] = left + top
-        
-        return cache[key]
-        
+        return dp[-1][-1]
         
