@@ -1,18 +1,14 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        dp = [[0]*n for _ in range(m)]
-        dp[0][0] = 1
+        if m == 1 or n == 1:
+            return 1
         
-        def getVal(i: int, j: int)-> int:
-            if i < 0 or j < 0:
-                return 0
-            return dp[i][j]
+        dp = [0]*n
+        dp[0] = 1
         
         for i in range(m):
             for j in range(n):
-                if(i+j == 0):
-                    continue
-                dp[i][j] = getVal(i-1, j) + getVal(i, j-1)
+                dp[j] += dp[j-1] if j > 0 else 0
         
-        return dp[-1][-1]
+        return dp[-1]
         
