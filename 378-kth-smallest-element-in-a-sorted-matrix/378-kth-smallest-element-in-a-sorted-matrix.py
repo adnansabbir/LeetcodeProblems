@@ -1,10 +1,27 @@
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        arr = []
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                arr.append(matrix[i][j])
-                
-        arr.sort()
-        return arr[k-1]
+        def countLowerEqual(val: int)-> int:
+            col = len(matrix[0]) - 1
+            row = 0
+            count = 0
+            
+            while row < len(matrix) and col >= 0:
+                if matrix[row][col] > val:
+                    col-=1
+                else:
+                    count += col+1
+                    row+=1
+            return count
         
+        low = matrix[0][0]
+        high = matrix[-1][-1]
+        
+        while low != high:
+            mid = (low + high)//2
+            count = countLowerEqual(mid)
+            if count < k:
+                low = mid+1
+            else:
+                high = mid
+        
+        return low
