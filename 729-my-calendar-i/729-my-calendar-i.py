@@ -30,7 +30,6 @@ class MyCalendar:
         tempParent = self.events
         newEvent = Event(start, end)
         
-        # print(self.events)
         while not tempParent.intersects(newEvent):
             if newEvent < tempParent:
                 if not tempParent.left:
