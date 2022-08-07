@@ -1,20 +1,20 @@
 from functools import cache
 class Solution:
     def countVowelPermutation(self, n: int) -> int:
-        nextChar = {
-            'a': ['e'],
-            'e': ['i','a'],
-            'i': ['a','e','o','u'],
-            'o': ['i','u'],
-            'u': ['a']
-        }
+        if n == 1:
+            return 5
+        
+        cm = {0:[1], 1:[0,2], 2:[0,1,3,4], 3:[2,4], 4:[0]}
         maxNum = pow(10,9) + 7
+        cidx = 1
+        prevIdx = 0
         
-        @cache
-        def getCombinations(char: str, length: int):
-            if length == 1:
-                return 1
+        dp = [[1,1,1,1,1],[0,0,0,0,0]]
+        
+        for _ in range(1,n):
+            for i in range(5):
+                dp[cidx][i] = sum(dp[prevIdx][j] for j in cm[i]) % maxNum
             
-            return sum([getCombinations(ch, length-1) for ch in nextChar[char]])%maxNum
+            cidx, prevIdx = prevIdx, cidx
         
-        return sum([getCombinations(ch, n) for ch in ['a','e','i','o','u']])%maxNum
+        return sum(dp[prevIdx]) % maxNum
