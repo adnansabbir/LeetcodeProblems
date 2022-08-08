@@ -1,4 +1,3 @@
-from random import randrange
 from functools import cache
 
 class Solution:
@@ -12,7 +11,6 @@ class Solution:
             
             return maxLen + 1
         
-        # print([randrange(100) for _ in range(200)])
         
         result = max([getMaxSubSeq(i) for i in range(len(nums))])
         return result
