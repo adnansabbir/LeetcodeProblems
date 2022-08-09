@@ -14,4 +14,5 @@ var twoSum = function(nums, target) {
             idx_map[nums[i]] = i
         }
     }
+
 };
