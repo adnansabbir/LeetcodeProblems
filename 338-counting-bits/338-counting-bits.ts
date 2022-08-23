@@ -1,16 +1,20 @@
 function countBits(n: number): number[] {
-    const findNumberOfBits = (n)=> {
-        let count = 0
-        while(n>0){
-            count += n&1
-            n = n>>1
-        }
-        return count
-    }
+    if(n == 0) return [0]
+    if(n == 1) return [0,1]
+    const result:number[] = new Array<number>(n+1)
+    result[0] = 0
+    result[1] = 1
     
-    const result:number[] = []
-    for(let i = 0; i<= n; i++){
-        result.push(findNumberOfBits(i))
+    let pointer = 0
+    let pos = 2
+    while(pos <= n){
+        if(Math.log(pos)/Math.log(2)%1 == 0){
+            result[pos] = 1
+            pointer = 0
+        }else{
+            result[pos] = 1 + result[++pointer]
+        }
+        pos+=1
     }
     
     return result
