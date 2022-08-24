@@ -1,4 +1,6 @@
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
-        return False if n < 1 else math.log10(n)/math.log10(3)%1 == 0
+        maxNumber = math.pow(3,19)
+        return n>0 and maxNumber%n==0
+            
         
