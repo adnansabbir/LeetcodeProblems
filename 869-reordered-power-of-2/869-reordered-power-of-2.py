@@ -2,6 +2,7 @@ class Solution:
     def reorderedPowerOf2(self, n: int) -> bool:
         freq = Counter(str(n))
         digitCount = len(str(n))
+        sortedN = ''.join(sorted(str(n)))
         window = [10**(digitCount-1), 10**(digitCount) - 1]
         possibleResults = set()
         for i in range(1000):
@@ -10,7 +11,7 @@ class Solution:
             if 2**i >= window[0]:
                 possibleResults.add(''.join(sorted(str(2**i))))
         
-        sortedN = ''.join(sorted(str(n)))
-        return sortedN in possibleResults
+            if sortedN in possibleResults: return True
+        return False
             
         
