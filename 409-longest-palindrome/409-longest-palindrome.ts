@@ -1,18 +1,14 @@
 function longestPalindrome(s: string): number {
     const frequency = {}
+    let size = 0
     for(let char of s){
         frequency[char] = (frequency[char] || 0) + 1
+        if(frequency[char] === 2){
+            size += frequency[char]
+            frequency[char] = 0
+        }
     }
     
-    let size = 0
-    let extraSize = 0
-    Object.keys(frequency).forEach(key=> {
-        if(frequency[key] %2 == 0){
-            size+=frequency[key]
-        }else if(frequency[key] %2 == 1){
-            size+=frequency[key]-1
-            extraSize = 1
-        }
-    })
+    let extraSize = Object.keys(frequency).some(key=> !!frequency[key]) ? 1 : 0
     return size + extraSize
 };
