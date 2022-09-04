@@ -37,9 +37,7 @@ class Solution:
         
         insertInVerticalOrder(root, leftDistance)
         for i, res in enumerate(result):
-            # print('Original', res, result)
             res.sort()
             result[i] = [val[1] for val in res]
-            # print('Sorted', res, result)
         
         return result
