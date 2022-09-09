@@ -1,22 +1,18 @@
 function numberOfWeakCharacters(properties) {
     properties = properties.sort(function (a, b) { return a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]; });
     var size = properties.length - 1;
-    var getIndexOfNextLargerAttack = function (value) {
-        var start = 0;
-        var end = size;
-        while (start <= end) {
-            var mid = Math.floor((start + end) / 2);
-            if (properties[mid][0] > value && properties[mid - 1][0] == value)
-                return mid;
-            else if (properties[mid][0] <= value) {
-                start = mid + 1;
-            }
-            else {
-                end = mid - 1;
+    var attacks = {};
+    for (var i = 0; i <= size; i++) {
+        var prop = properties[i];
+        if (!attacks[prop[0]]) {
+            attacks[prop[0]] = [i, -1];
+            if (i != 0) {
+                attacks[properties[i - 1][0]][1] = i;
             }
         }
-        return -1;
-    };
+    }
+    // console.log(properties)
+    // console.log(attacks)
     var largestFromLast = new Array(properties.length);
     for (var i = size; i >= 0; i--) {
         if (i == size) {
@@ -44,7 +40,7 @@ function numberOfWeakCharacters(properties) {
     var weakCaharacters = 0;
     for (var _i = 0, properties_1 = properties; _i < properties_1.length; _i++) {
         var prop = properties_1[_i];
-        var largerAttackIndex = getIndexOfNextLargerAttack(prop[0]);
+        var largerAttackIndex = attacks[prop[0]][1];
         if (largerAttackIndex === -1)
             continue;
         if (hasLargerDefence(largerAttackIndex, prop[1])) {
