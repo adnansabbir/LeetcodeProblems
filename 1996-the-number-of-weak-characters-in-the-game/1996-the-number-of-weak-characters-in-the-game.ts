@@ -1,19 +1,21 @@
 function numberOfWeakCharacters(properties: number[][]): number {    
     properties = properties.sort((a,b)=> a[0]===b[0] ? a[1]-b[1] : a[0]-b[0])
     const size = properties.length - 1
-    
-    const attacks = {}
-    for(let i = 0; i<=size; i++){
-        let prop = properties[i]
-        if(!attacks[prop[0]]){
-            attacks[prop[0]] = [i, -1]
-            if(i!=0){
-                attacks[properties[i-1][0]][1] = i
+    const getIndexOfNextLargerAttack=(value: number):number=>{
+        let start = 0
+        let end = size
+        
+        while(start<=end){
+            const mid = Math.floor((start+end)/2)
+            if(properties[mid][0]>value && properties[mid-1][0]==value) return mid
+            else if(properties[mid][0]<=value){
+                start=mid+1
+            }else{
+                end=mid-1
             }
         }
+        return -1
     }
-    // console.log(properties)
-    // console.log(attacks)
     
     const largestFromLast = new Array<number>(properties.length)
     for(let i = size; i>=0; i--){
@@ -40,11 +42,12 @@ function numberOfWeakCharacters(properties: number[][]): number {
 
     let weakCaharacters = 0
     for (let prop of properties){
-        const largerAttackIndex = attacks[prop[0]][1]
+        const largerAttackIndex = getIndexOfNextLargerAttack(prop[0])
         if(largerAttackIndex===-1) continue
         if(hasLargerDefence(largerAttackIndex, prop[1])){
             weakCaharacters++
         }
+        // console.log(prop, largerAttackIndex, hasLargerDefence(largerAttackIndex, prop[1]))
     }
     
     return weakCaharacters
