@@ -5,16 +5,17 @@ function bagOfTokensScore(tokens: number[], power: number): number {
     let maxScore = 0
 
     while(start <= end){
-        if(tokens[start] > power){
-            if(score<1) break
+        if(tokens[start] <= power){
+            score++
+            power-=tokens[start++]
+        }else if(score && start < end){
             score--
             power+=tokens[end--]
         }else{
-            score++
-            maxScore = Math.max(maxScore, score)
-            power-=tokens[start++]
+            break
         }
+        console.log({start,end,power,score})
     }
     
-    return maxScore
+    return score
 };
