@@ -14,7 +14,6 @@ function bagOfTokensScore(tokens: number[], power: number): number {
         }else{
             break
         }
-        console.log({start,end,power,score})
     }
     
     return score
