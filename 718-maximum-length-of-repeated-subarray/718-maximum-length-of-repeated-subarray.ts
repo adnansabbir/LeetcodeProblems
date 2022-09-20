@@ -1,6 +1,5 @@
 function findLength(nums1: number[], nums2: number[]): number {
     const dp = new Array<number[]>(2).fill([]).map(_ => new Array<number>(nums2.length).fill(0))
-    // const dp = new Array<number[]>(nums1.length).fill(null).map(_ => new Array<number>(nums2.length).fill(0))
     let result = 0
     for(let i = 0; i<nums1.length; i++){
         for(let j = 0; j<nums2.length; j++){
