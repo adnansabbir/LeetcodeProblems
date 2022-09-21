@@ -5,23 +5,12 @@ function sumEvenAfterQueries(nums: number[], queries: number[][]): number[]{
 	let tempSum = nums.filter(num => num%2 === 0).reduce((a, b) => a + b, 0)
 	
 	const result: number[] = []
-	// pass through queries, update tempSum and add it to the result
-	for(let [val, index] of queries){
-		if(nums[index]%2 === 0){
-			if((nums[index]+val)%2 === 0){
-				tempSum += val
-			}else{
-				tempSum -= nums[index]
-			}
-		}else{
-			if((nums[index]+val)%2 === 0){
-				tempSum += nums[index]+val
-			}
-		}
-		
-		nums[index]+=val
-		result.push(tempSum)
-	}
 	
-	return result
+	return queries.map(([val, index])=> {
+		const isEven = nums[index]%2 === 0
+		const willBeEven = (nums[index]+val)%2 === 0
+		tempSum += isEven ? willBeEven ? val : nums[index]*-1 : !willBeEven ? 0 : nums[index]+val
+		nums[index]+=val
+		return tempSum
+	})
 }
