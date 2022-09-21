@@ -1,14 +1,8 @@
 function sumEvenAfterQueries(nums: number[], queries: number[][]): number[]{
 	if(!nums || nums.length === 0 || !queries || queries.length === 0) return []
 	
-	let tempSum = 0
-	
 	// get initial sum of evens
-	for(let num of nums){
-		if(num%2 === 0){
-			tempSum += num
-		}
-	}
+	let tempSum = nums.filter(num => num%2 === 0).reduce((a, b) => a + b, 0)
 	
 	const result: number[] = []
 	// pass through queries, update tempSum and add it to the result
