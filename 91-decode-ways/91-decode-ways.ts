@@ -1,7 +1,6 @@
 function numDecodings(s: string): number {
     if(s[0]==='0') return 0
     
-    const dp = new Array<number>(s.length).fill(0)
     let parentCombination = 1
     let grandCombination = 1
     
