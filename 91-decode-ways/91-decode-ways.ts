@@ -2,25 +2,28 @@ function numDecodings(s: string): number {
     if(s[0]==='0') return 0
     
     const dp = new Array<number>(s.length).fill(0)
-    dp[0] = 1
+    let parentCombination = 1
+    let grandCombination = 1
     
     for(let i = 1; i < s.length; i++){
-        if(s[i] !== '0'){
-            dp[i] = dp[i-1]
-        }
-
-        const biggerCharAscii = parseInt(s[i-1] + s[i])
+        const currentChar = s[i]
+        const prevChar = s[i-1]
+        
+        let currentCombination = currentChar !== '0' ? parentCombination : 0
+        
+        const biggerCharAscii = parseInt(prevChar + currentChar)
         const canFormLargerChar = biggerCharAscii>=10 && biggerCharAscii<=26
         if(canFormLargerChar){
-            dp[i] += i >= 2 ? dp[i-2] : 1
+            currentCombination += grandCombination
         }
 
-        if(dp[i] === 0){
+        if(currentCombination === 0){
             return 0
         }
+        
+        grandCombination = parentCombination
+        parentCombination = currentCombination
     }
     
-    
-    // console.log(dp)
-    return dp[dp.length-1]
+    return parentCombination
 };
