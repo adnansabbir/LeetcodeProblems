@@ -15,7 +15,6 @@
  */
 function deleteNode(root: ListNode | null): void {
     let currentNode = root
-    let prevNode = null
     while(currentNode && currentNode.next && currentNode.next.next){
         currentNode.val = currentNode.next.val
         currentNode = currentNode.next
