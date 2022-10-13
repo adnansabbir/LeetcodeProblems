@@ -14,12 +14,7 @@
  Do not return anything, modify it in-place instead.
  */
 function deleteNode(root: ListNode | null): void {
-    let currentNode = root
-    while(currentNode && currentNode.next && currentNode.next.next){
-        currentNode.val = currentNode.next.val
-        currentNode = currentNode.next
-    }
-
-    currentNode.val = currentNode.next.val
-    currentNode.next = null
+    let nextNode = root.next
+    root.next = nextNode.next
+    root.val = nextNode.val
 };
