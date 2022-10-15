@@ -10,9 +10,6 @@
  * }
  */
 
-/**
- Do not return anything, modify it in-place instead.
- */
 function deleteNode(root: ListNode | null): void {
     let nextNode = root.next
     root.next = nextNode.next
