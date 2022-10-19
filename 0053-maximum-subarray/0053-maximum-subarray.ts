@@ -1,14 +1,10 @@
 function maxSubArray(nums: number[]): number {
     let maxSum = nums[0], sum = 0
-    let left = 0, right = 0
     
-    while(right < nums.length){
-        sum += nums[right++]
+    for(let i = 0; i<nums.length; i++){
+        sum = Math.max(sum, 0)
+        sum+=nums[i]
         maxSum = Math.max(maxSum, sum)
-        if(sum < 0){
-            left = right
-            sum = 0
-        }
     }
     
     return maxSum
