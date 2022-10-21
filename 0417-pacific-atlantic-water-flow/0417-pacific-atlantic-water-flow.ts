@@ -64,6 +64,6 @@ function pacificAtlantic(heights: number[][]): number[][] {
             }
         }
     }
-    // console.log(flow)
+
     return result
 };
