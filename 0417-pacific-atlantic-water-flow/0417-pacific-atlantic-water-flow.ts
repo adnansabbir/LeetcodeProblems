@@ -21,7 +21,7 @@ function pacificAtlantic(heights: number[][]): number[][] {
         flow[h][w] = 0
         const oceans = new Set<number>()
         
-        const neighbors = [[h-1, w], [h+1, w], [h,w-1], [h,w+1]]
+        const neighbors = [[h-1, w], [h+1, w], [h,w-1], [h,w+1]].filter(([nh, nw]) => getConnectedOcean(nh,nw) || heights[h][w] >= heights[nh][nw])
         neighbors.forEach(([nh, nw]) => {
             if(getConnectedOcean(nh, nw) === 0 && heights[h][w] >= heights[nh][nw]) oceans.add(calculateFlow(nh, nw))
             else oceans.add(getConnectedOcean(nh, nw))
