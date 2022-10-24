@@ -11,7 +11,7 @@ function maxLength(arr: string[]): number {
     }
     
     const traverse = (currString: string, idx: number): number => {
-        if(idx >= arr.length) return hasUniqueCharacters(currString) ? currString.length : 0
+        if(idx > arr.length) return hasUniqueCharacters(currString) ? currString.length : 0
         if(!hasUniqueCharacters(currString)) return 0
         
         const lengthWithCurr = traverse(currString + arr[idx], idx+1)
