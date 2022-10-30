@@ -1,16 +1,30 @@
 function threeSum(nums: number[]): number[][] {
-    const uniqueResult = new Set<string>()
-    for(let i = 2; i<nums.length; i++){
-        const uniqueNums = new Set<number>([nums[0]])
-        for(let j = 1; j<i; j++){
-            const target = 0 - (nums[i] + nums[j])
-            if(uniqueNums.has(target)) {
-                const res = [target, nums[i], nums[j]].sort((a, b) => a-b)
-                uniqueResult.add(res.join(','))
+    nums = nums.sort((a, b) => a-b)
+    const getTargetWith2Values = (left: number, right: number, target: number): number[][] => {
+        const result = []
+        while(left < right){
+            const sum = nums[left] + nums[right]
+            if(sum === target){
+                const leftVal = nums[left], rightVal = nums[right]
+                result.push([leftVal, rightVal])
+                while(nums[left] === leftVal) left++
+                while(nums[right] === rightVal) right--
             }
-            uniqueNums.add(nums[j])
+            else if(sum < target) left++
+            else if(sum > target) right--
         }
+        return result
     }
-    const result = Array.from(uniqueResult).map(res => res.split(',').map(num => parseInt(num)))
+    
+    const result = []
+    for(let i = 0; i<nums.length - 2; i++){
+        if(i !== 0 && nums[i] === nums[i-1]) continue
+        const duplets = getTargetWith2Values(i+1, nums.length - 1, -nums[i])
+        if(duplets.length === 0) continue
+        duplets.forEach(duplet => {
+            result.push([nums[i], duplet[0], duplet[1]])
+        })
+    }
+    
     return result
 };
