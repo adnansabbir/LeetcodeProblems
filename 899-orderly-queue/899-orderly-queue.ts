@@ -12,4 +12,4 @@ function orderlyQueue(s: string, k: number): string {
     }
 
     return s.split('').sort().join('')
-};
+}
