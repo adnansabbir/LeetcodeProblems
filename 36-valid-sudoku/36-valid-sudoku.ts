@@ -50,4 +50,4 @@ function isValidSudoku(board: string[][]): boolean {
     
     return columnsHasUniqueNumbers(board) && rowsHasUniqueNumbers(board) && segmentHasUniqueNumbers(3, board)
     
-};
+}
