@@ -1,8 +1,3 @@
-/**
- * @param {character[][]} board
- * @param {string} word
- * @return {boolean}
- */
 var exist = function(board, word) {
     let visited = new Set()
     const foundWord = (x, y, idx) => {
