@@ -1,12 +1,14 @@
 import sys
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        dp = [sys.maxsize] * len(nums)
-        dp[-1] = 0
+        result, n = 0, len(nums)
+        curr_end, max_distance = 0, 0
 
-        for i in range(len(nums) - 2, -1, -1):
-            for dIdx in range(i + 1, min(i + nums[i] + 1, len(nums))):
-                dp[i] = min(dp[i], 1 + dp[dIdx])
-        
-        return dp[0]
+        for i in range(n - 1):
+            max_distance = max(max_distance, i + nums[i])
+            if i == curr_end:
+                result += 1
+                curr_end = max_distance
+        return result
+
         
