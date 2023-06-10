@@ -14,13 +14,8 @@ class Solution:
             right = sumOfSeqInRange(rr1, rr2)
             
             rest = n - abs(lr1 - lr2) - abs(rr1 - rr2)
-            # print(val, lr1, lr2, rr1, rr2, rest)
-            # print(val, rest)
             return left + right + rest
 
-        # for i in range(maxSum, -1, -1):
-        #     if getTotal(i) <= maxSum:
-        #         return i
         start, end = 0, maxSum
         while start <= end:
             mid = (start + end)//2
