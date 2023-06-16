@@ -13,11 +13,7 @@ class Solution:
             return [left, right]
         
         def countPermutation(left: List[int], right: List[int])-> int:
-            # forPrint = [f'countPermutation {left} {right}']
             if not left and not right:
-                # print('\n')
-                # for p in forPrint:
-                #     print(p)
                 return 1
             
             lSize, rSize = len(left), len(right)
@@ -29,10 +25,6 @@ class Solution:
             rightTree = divideTree(right)
             rightPermutation = countPermutation(rightTree[0], rightTree[1])
 
-            # forPrint.append(f'currPermutation: {currPermutation}, leftTree: {leftPermutation}, rightTree: {rightPermutation}')
-            # print('\n')
-            # for p in forPrint:
-            #     print(p)
             return (currPermutation * leftPermutation * rightPermutation)
         
         left, right = divideTree(nums)
