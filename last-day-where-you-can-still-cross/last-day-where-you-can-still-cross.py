@@ -1,8 +1,5 @@
 class Solution:
     def latestDayToCross(self, row: int, col: int, cells: List[List[int]]) -> int:
-        # fill all blocks will possible paths which is 4
-        # Every time we fill one block with water reduce one from the blocks dependent on it
-        # Keep track of all row, till any of the row has atleast one possible path it might be possible to reach end
          
         filledOnDay = [[None]*col for r in range(row)]
         for i, [r,c] in enumerate(cells):
