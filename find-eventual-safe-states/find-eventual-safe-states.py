@@ -1,6 +1,3 @@
-# dp = {0: false, 1: false, 2: true, 5: true, 3: false, 4: true}
-# visited = {4}
-
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         dp = {}
