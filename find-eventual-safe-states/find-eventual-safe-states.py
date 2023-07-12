@@ -42,6 +42,9 @@ class Solution:
                 visited.add(i)
                 dfs(i, visited)
                 visited.remove(i)
+            
+            # Since we need to return result sorted in ascending order, 
+            # and we are iterating in ascending order whenever we find a safe node we store it
             if dp[i]:
                 result.append(i)
 
