@@ -5,7 +5,6 @@ class Solution:
         numIndex = {}
         result = 1
         for i in range(n - 1, -1, -1):
-            print(i)
             target = arr[i] + difference
             if target in numIndex:
                 dp[i] += dp[numIndex[target]]
