@@ -18,14 +18,10 @@ class Solution:
                     end = mid - 1
             return n
         
-        # lru_cache(maxsize = None)
-        cache = [[None]*(k + 1) for _ in range(n)]
+        @lru_cache(maxsize = None)
         def dp(currIdx: int, remainingEvents: int)-> int:
             if currIdx >= n or not remainingEvents:
                 return 0
-
-            if cache[currIdx][remainingEvents] != None:
-                return cache[currIdx][remainingEvents]
             
             [start, end, value] = sortedEvents[currIdx]
             withCurrent = 0
@@ -37,8 +33,7 @@ class Solution:
             withCurrent =  value + dp(nextEventIdx, remainingEvents - 1)
             
             # print(currIdx, [start, end, value], withCurrent, withOutCurrent,  max(withCurrent, withOutCurrent))
-            cache[currIdx][remainingEvents] = max(withCurrent, withOutCurrent)
-            return cache[currIdx][remainingEvents]
+            return max(withCurrent, withOutCurrent)
             
 
         return dp(0, k)
