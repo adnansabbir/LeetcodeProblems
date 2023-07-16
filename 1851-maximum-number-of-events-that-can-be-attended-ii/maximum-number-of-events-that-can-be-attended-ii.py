@@ -29,10 +29,8 @@ class Solution:
             
             withOutCurrent = dp(currIdx + 1, remainingEvents)
             nextEventIdx = getNextEventIndex(currIdx, end)
-            # print(currIdx, nextEventIdx)
             withCurrent =  value + dp(nextEventIdx, remainingEvents - 1)
             
-            # print(currIdx, [start, end, value], withCurrent, withOutCurrent,  max(withCurrent, withOutCurrent))
             return max(withCurrent, withOutCurrent)
             
 
