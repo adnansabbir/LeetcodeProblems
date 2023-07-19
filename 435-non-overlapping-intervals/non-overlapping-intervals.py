@@ -12,7 +12,7 @@ class Solution:
                 return None
             return i
 
-        print(intervals)
+        # print(intervals)
         for i in range(n-1, -1, -1):
             [start, end] = intervals[i]
             j = getNextEvent(end)
@@ -21,5 +21,5 @@ class Solution:
             else:
                 dp[i] = max(dp[i], dp[j] + 1, dp[i+1])
 
-        print(dp)
+        # print(dp)
         return n - dp[0]
