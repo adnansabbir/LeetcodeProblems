@@ -1,6 +1,7 @@
-<h2><a href="https://leetcode.com/problems/combine-two-tables/">175. Combine Two Tables</a></h2><h3>Easy</h3><hr><div class="sql-schema-wrapper__3VBi"><a class="sql-schema-link__3cEg">SQL Schema<svg viewBox="0 0 24 24" width="1em" height="1em" class="icon__1Md2"><path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></a></div><div><p>Table: <code>Person</code></p>
+<h2><a href="https://leetcode.com/problems/combine-two-tables">Combine Two Tables</a></h2> <img src='https://img.shields.io/badge/Difficulty-Easy-brightgreen' alt='Difficulty: Easy' /><hr><p>Table: <code>Person</code></p>
 
-<pre>+-------------+---------+
+<pre>
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | personId    | int     |
@@ -15,7 +16,8 @@ This table contains information about the ID of some persons and their first and
 
 <p>Table: <code>Address</code></p>
 
-<pre>+-------------+---------+
+<pre>
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | addressId   | int     |
@@ -36,9 +38,10 @@ Each row of this table contains information about the city and state of one pers
 <p>The query result format is in the following example.</p>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> 
+<pre>
+<strong>Input:</strong> 
 Person table:
 +----------+----------+-----------+
 | personId | lastName | firstName |
@@ -64,4 +67,3 @@ Address table:
 There is no address in the address table for the personId = 1 so we return null in their city and state.
 addressId = 1 contains information about the address of personId = 2.
 </pre>
-</div>
