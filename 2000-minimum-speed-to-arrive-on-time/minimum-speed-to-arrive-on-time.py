@@ -3,11 +3,11 @@ import sys
 class Solution:
     def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
         n = len(dist)
-        # totalDistance = sum(dist)
-        # if hour <= n - 1:
-        #     return -1
-        # if totalDistance <= hour:
-        #     return 1
+        totalDistance = sum(dist)
+        if hour <= n - 1:
+            return -1
+        if totalDistance <= hour:
+            return 1
         
         def canComplete(speed: int)-> bool:
             if speed == 0:
