@@ -20,8 +20,5 @@ class Solution:
             return 1 if (cache[rowKey] + cache[colKey] - mat[row][col]) == 1 else 0
         
         result = sum(isSpecial(i, j) for j in range(n) for i in range(m))
-
-        # for num in ([i,j, isSpecial(i, j)] for j in range(n) for i in range(m)):
-        #     print(num)
         return result
         
