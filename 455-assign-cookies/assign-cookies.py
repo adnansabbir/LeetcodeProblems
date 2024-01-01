@@ -4,10 +4,13 @@ class Solution:
         s.sort()
 
         contentChildCount = 0
-        while g and s:
-            if s[0] >= g[0]:
+        pointerG = 0
+        pointerS = 0
+        while pointerG < len(g) and pointerS < len(s):
+            if s[pointerS] >= g[pointerG]:
                 contentChildCount += 1
-                g.pop(0)
-            s.pop(0)
+                pointerG += 1
+            
+            pointerS += 1
         return contentChildCount
         
