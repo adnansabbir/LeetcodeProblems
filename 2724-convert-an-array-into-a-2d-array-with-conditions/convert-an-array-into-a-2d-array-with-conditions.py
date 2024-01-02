@@ -1,22 +1,21 @@
 class Solution:
     def findMatrix(self, nums: List[int]) -> List[List[int]]:
-        frequencies = [0 for _ in range(201)]
+        frequencies = {}
 
+        maxFrequency = 0
         for num in nums:
-            frequencies[num] += 1
+            if num not in frequencies:
+                frequencies[num] = 1
+            else:
+                frequencies[num] += 1
+            
+            maxFrequency = max(maxFrequency, frequencies[num])
         
-        result = [[]]
-        totalElem = len(nums)
+        result = [[] for _ in range(maxFrequency)]
 
-        while totalElem:
-            for i, frequency in enumerate(frequencies):
-                if frequency:
-                    result[-1].append(i)
-                    frequencies[i] -= 1
-                    totalElem -= 1
-            result.append([])
-        
-        result.pop()
+        for i in frequencies:
+            for j in range(frequencies[i]):
+                result[j].append(i)
 
         return result
         
