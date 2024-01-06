@@ -3,7 +3,6 @@ from functools import lru_cache
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
         startEndProfit = sorted([(s,e,p) for s,e,p in zip(startTime, endTime, profit)], key = lambda x: x[0])
-        print(startEndProfit)
         n = len(startTime)
 
         def getNextIndexWithGreaterStartTime(time: int, start: int, end: int)-> int:
@@ -27,7 +26,6 @@ class Solution:
             nextJobIdx = getNextIndexWithGreaterStartTime(startEndProfit[currIndex][1], currIndex + 1, n - 1)
             nextJobIdx = n if nextJobIdx == -1 else nextJobIdx
 
-            print(f'For {currIndex} or end time {startEndProfit[currIndex][1]}, next is {nextJobIdx}')
             result = max(
                 startEndProfit[currIndex][2] + countMaxProfit(nextJobIdx),
                 countMaxProfit(currIndex + 1)
