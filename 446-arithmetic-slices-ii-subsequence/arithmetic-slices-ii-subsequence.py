@@ -20,6 +20,4 @@ class Solution:
                 sequences[i][diff] += 1 + prevSeqCount
 
                 result += prevSeqCount
-        
-        # print(sequences, result)
         return result
