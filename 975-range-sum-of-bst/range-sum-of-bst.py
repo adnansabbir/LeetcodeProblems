@@ -14,10 +14,10 @@ class Solution:
             if currNode.val >= low and currNode.val <= high:
                 result += currNode.val
             
-            if currNode.left:
+            if currNode.val >= low and  currNode.left:
                 stack.append(currNode.left)
 
-            if currNode.right:
+            if currNode.val <= high and currNode.right:
                 stack.append(currNode.right)
 
         return result
