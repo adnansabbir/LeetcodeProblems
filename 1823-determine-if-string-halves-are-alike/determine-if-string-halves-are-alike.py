@@ -1,6 +1,6 @@
 class Solution:
     def halvesAreAlike(self, s: str) -> bool:
-        vowels = set(['a','A','e','E','i','I','o','O','u','U'])
+        vowels = set('aAeEiIoOuU')
 
         vowelsInFirstHalf = 0
         vowelsInSecondHalf = 0
