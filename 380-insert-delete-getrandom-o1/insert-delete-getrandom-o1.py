@@ -18,7 +18,7 @@ class RandomizedSet:
         if val not in self.uniqueData:
             return False
         
-        self.data[self.uniqueData[val]], self.data[-1] = self.data[-1], self.data[self.uniqueData[val]]
+        self.data[self.uniqueData[val]] = self.data[-1]
         self.uniqueData[self.data[self.uniqueData[val]]] = self.uniqueData[val]
         self.data.pop()
         del self.uniqueData[val]
@@ -27,10 +27,3 @@ class RandomizedSet:
     def getRandom(self) -> int:
         randIndex = random.randint(0, len(self.data) - 1)
         return self.data[randIndex]
-
-
-# Your RandomizedSet object will be instantiated and called as such:
-# obj = RandomizedSet()
-# param_1 = obj.insert(val)
-# param_2 = obj.remove(val)
-# param_3 = obj.getRandom()
