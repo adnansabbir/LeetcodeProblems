@@ -25,7 +25,6 @@ class RandomizedSet:
         return True
         
     def getRandom(self) -> int:
-        # print(self.data)
         randIndex = random.randint(0, len(self.data) - 1)
         return self.data[randIndex]
 
