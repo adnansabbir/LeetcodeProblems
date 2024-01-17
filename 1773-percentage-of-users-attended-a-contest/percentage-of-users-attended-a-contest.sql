@@ -1,6 +1,6 @@
 select 
-    r.contest_id,
-    round((count(r.contest_id)::decimal / u.total) * 100, 2) as percentage
-from Register r, (select count(*) as total from Users) u
-group by r.contest_id, u.total
-order by percentage desc, r.contest_id
+    contest_id,
+    round((count(contest_id)::decimal / (select count(*) from Users)) * 100, 2) as percentage
+from Register
+group by contest_id
+order by percentage desc, contest_id
