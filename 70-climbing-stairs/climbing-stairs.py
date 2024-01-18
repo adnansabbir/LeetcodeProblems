@@ -6,7 +6,6 @@ class Solution:
         dp = [1,2]
 
         for i in range(3, n + 1):
-            dp.append(dp[0] + dp[1])
-            dp.pop(0)
+            dp[0], dp[1] = dp[1], dp[0] + dp[1]
         
         return dp[-1]
