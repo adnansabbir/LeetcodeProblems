@@ -9,7 +9,6 @@ class Solution:
 
         for i in range(1, len(cost)):
             for j in range(0, len(cost[0])):
-                print(i,j, cost[i][j], min(getValue(i-1, j-1), getValue(i-1, j), getValue(i-1, j+1)))
                 cost[i][j] += min(getValue(i-1, j-1), getValue(i-1, j), getValue(i-1, j+1))
         
         return min(cost[-1])
