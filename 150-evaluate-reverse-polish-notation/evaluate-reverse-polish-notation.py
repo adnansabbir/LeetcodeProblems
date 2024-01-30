@@ -9,12 +9,9 @@ class Solution:
         }
         
         for token in tokens:
-            # print(stack)
             if token not in operations:
                 stack.append(int(token))
             else:
                 stack.append(operations[token](stack.pop(), stack.pop()))
-                # print(token, stack, '\n')
 
-        # print(stack)
         return floor(stack[0])
