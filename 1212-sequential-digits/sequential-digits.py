@@ -1,9 +1,6 @@
 class Solution:
     def sequentialDigits(self, low: int, high: int) -> List[int]:
         def getStartEndIncrement(digitCount: int)-> List[int]:
-            if digitCount > 9:
-                return [0,0,1]
-
             start = int(''.join([str(i + 1) for i in range(digitCount)]))
             end = int(''.join([str(9 - i) for i in range(digitCount)][::-1]))
             increment = int(''.join(['1' for i in range(digitCount)]))
