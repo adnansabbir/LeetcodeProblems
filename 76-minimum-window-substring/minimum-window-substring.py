@@ -8,7 +8,6 @@ class Solution:
 
         l, r = 0, 0
         result = ''
-        print('TFreq\t', tFreq)
         
         while r < len(s):
             rChar = s[r]
