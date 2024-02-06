@@ -9,12 +9,11 @@ class Solution:
                 wordHash *= primes[ord(char) - ord('a')]
             return wordHash
         
-        result = []
         for word in strs:
             wordHash = getHash(word)
             if wordHash not in hashResultMap:
-                result.append([])
-                hashResultMap[wordHash] = len(result) - 1
+                hashResultMap[wordHash] = []
+
+            hashResultMap[wordHash].append(word)
             
-            result[hashResultMap[wordHash]].append(word)
-        return result
+        return hashResultMap.values()
