@@ -2,7 +2,6 @@ class Solution:
     def largestPerimeter(self, nums: List[int]) -> int:
         nums.sort()
         _sum = sum(nums)
-        result = -1
         
         for i in range(len(nums) - 1, 0, -1):
             _sum -= nums[i]
