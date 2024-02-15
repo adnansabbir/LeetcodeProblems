@@ -1,12 +1,13 @@
 class Solution:
     def largestPerimeter(self, nums: List[int]) -> int:
-        cSum = sorted(nums)
+        nums.sort()
+        _sum = sum(nums)
         result = -1
-        for i in range(1, len(nums)):
-            cSum[i] += cSum[i-1]
-            if cSum[i] - cSum[i-1] < cSum[i-1]:
-                result = cSum[i]
+        
+        for i in range(len(nums) - 1, 0, -1):
+            _sum -= nums[i]
+            if _sum > nums[i]:
+                return _sum + nums[i]
 
-
-        return result
+        return -1
         
