@@ -3,9 +3,9 @@ class Solution:
         if n <= 0:
             return False
 
-        ones = 0
         while n:
-            ones += n & 1
+            if n > 1 and n & 1:
+                return False
             n = n >> 1
-        return ones < 2
+        return True
         
