@@ -6,7 +6,6 @@ class Solution:
             tt[pA][0] += 1
             tt[pB][1] += 1
         
-        print(tt)
         for i in range(1, n+1):
             peopleITrust, peopleTrustingMe = tt[i]
             if peopleITrust == 0 and peopleTrustingMe == n - 1:
