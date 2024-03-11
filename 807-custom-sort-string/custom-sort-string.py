@@ -1,17 +1,16 @@
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
-        orderMap = {}
-        for i, char in enumerate(order):
-            orderMap[char] = i
-        
-        nextIndex = len(order)
-        for i in range(26):
-            char = chr(i + ord('a'))
-            if char not in orderMap:
-                orderMap[char] = nextIndex
-                nextIndex+=1
+        char_count = {char: 0 for char in order}
+        for char in s:
+            if char in char_count:
+                char_count[char] += 1
+    
+        sorted_s = ''
+        for char in order:
+            sorted_s += char * char_count[char]
+    
+        for char in s:
+            if char not in order:
+                sorted_s += char
 
-        result = ''.join(sorted(list(s), key = lambda x: orderMap[x]))
-
-        return result
-        
+        return sorted_s
