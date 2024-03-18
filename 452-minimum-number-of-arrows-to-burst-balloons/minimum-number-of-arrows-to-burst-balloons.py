@@ -3,7 +3,6 @@ class Solution:
         points.sort(key=lambda x: x[0])
         arrows = 1
         end = points[0][1]
-        print(points)
         for balloon in points[1:]:
             if balloon[0] > end: 
                 arrows += 1  
