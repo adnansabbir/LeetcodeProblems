@@ -4,13 +4,17 @@ class Solution:
         max_frequency = max(task_counts.values())
         max_frequency_tasks = sum(1 for task, count in task_counts.items() if count == max_frequency)
         
-        # Calculate the minimum time directly
-        part_count = max_frequency - 1
-        part_length = n - (max_frequency_tasks - 1)
-        empty_slots = part_count * part_length
-        available_tasks = len(tasks) - max_frequency * max_frequency_tasks
-        idles = max(0, empty_slots - available_tasks)
+        idle_time_in_between = 0
+        if n <= max_frequency_tasks - 1:
+            total_time = max_frequency * max_frequency_tasks
+        else:
+            idle_in_each_group = n - (max_frequency_tasks - 1)
+            time_to_complete_each_group = max_frequency_tasks + idle_in_each_group
+            total_time = (time_to_complete_each_group * max_frequency) - idle_in_each_group
+            idle_time_in_between = (max_frequency * idle_in_each_group) - idle_in_each_group
 
-        return len(tasks) + idles
+        tasks_left = len(tasks) - (max_frequency * max_frequency_tasks)
+        tasks_left_after_idle_time = max(0, tasks_left - idle_time_in_between)
+        return total_time + tasks_left_after_idle_time
 
         
