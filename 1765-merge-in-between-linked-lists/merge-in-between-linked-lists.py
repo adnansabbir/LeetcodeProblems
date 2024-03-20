@@ -11,11 +11,9 @@ class Solution:
         for _ in range(a):
             prePointA = prePointA.next
         
-        # print(prePointA.val)
         prePointB = prePointA
         for _ in range(b - a + 1):
             prePointB = prePointB.next
-        # print(prePointB.val)
 
         prePointA.next = list2
 
@@ -23,5 +21,5 @@ class Solution:
             list2 = list2.next
         
         list2.next = prePointB.next
-        # print(list2.val)
+        
         return preResult.next
