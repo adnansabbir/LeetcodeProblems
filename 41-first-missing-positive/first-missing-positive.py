@@ -2,10 +2,7 @@ class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         pointer = 0
         while pointer < len(nums):
-            if nums[pointer] <= 0 or nums[pointer] > len(nums):
-                nums[pointer] = -1
-                pointer += 1
-            elif nums[pointer] == pointer + 1:
+            if nums[pointer] <= 0 or nums[pointer] > len(nums) or nums[pointer] == pointer + 1:
                 pointer += 1
             else:
                 left, right = pointer, nums[pointer] - 1
@@ -16,7 +13,7 @@ class Solution:
                 nums[left], nums[right] = nums[right], nums[left]
         
         for i, num in enumerate(nums):
-            if num == -1:
+            if num != i + 1:
                 return i + 1
         
         return len(nums) + 1
