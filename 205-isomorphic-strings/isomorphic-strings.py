@@ -3,18 +3,17 @@ class Solution:
         if len(s) != len(t):
             return False
 
-        charMap = {}
+        sCharMap = {}
         mappedCharOfT = set()
-        
+
         for i, char in enumerate(s):
-            if s[i] not in charMap:
+            if char not in sCharMap:
                 if t[i] in mappedCharOfT:
                     return False
-                else:
-                    charMap[s[i]] = t[i]
-                    mappedCharOfT.add(t[i])
-
-            elif t[i] != charMap[s[i]]:
+                
+                sCharMap[char] = t[i]
+                mappedCharOfT.add(t[i])
+            elif sCharMap[char] != t[i]:
                 return False
-        
+
         return True
