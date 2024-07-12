@@ -22,8 +22,6 @@ class Solution:
                     elif x > y and ba:
                         ab += 1
                         ba -= 1
-            
-                # print(f'i: {i}\ta: {a}\tb: {b}\tab: {ab}\tba: {ba}')
             return (ab * x) + (ba * y)
         
         result = 0
@@ -33,7 +31,7 @@ class Solution:
                 if right - left > 0:
                     result += get_max_val([left, right])
                 left = right + 1
-                
+
             right += 1
 
         if right - left > 0:
