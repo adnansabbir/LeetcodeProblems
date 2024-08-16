@@ -15,9 +15,6 @@ class Solution:
                 high1 = (i, arrays[i][-1])
             elif arrays[i][-1] > high2[1]:
                 high2 = (i, arrays[i][-1])
-        
-        print(low1, low2)
-        print(high1, high2)
 
         if high1[0] != low1[0]:
             return high1[1] - low1[1]
