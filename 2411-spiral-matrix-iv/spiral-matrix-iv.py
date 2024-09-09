@@ -10,8 +10,6 @@ class Solution:
         left, right, top, bottom = 0, n - 1, 0, m - 1
         pos = [0,0,'r']
         while head:
-            # print('\t\t\t',head.val, pos)
-            # print(f'\t{top}\n{left}\t\t{right}\n\t{bottom}')
             result[pos[0]][pos[1]] = head.val
             if pos[2] == 'r':
                 if pos[1] < right:
