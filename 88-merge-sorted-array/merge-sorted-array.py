@@ -14,7 +14,6 @@ class Solution:
             right -= 1
             left -= 1
         
-        print(nums1)
         p2, p1 = 0, n
         for i in range(m + n):
             if not (p1 >= len(nums1) or p2 >= len(nums2)):
