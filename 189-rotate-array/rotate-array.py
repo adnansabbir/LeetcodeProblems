@@ -9,7 +9,6 @@ class Solution:
         for i in range(len(nums)):
             next_pos = (pos + k) % len(nums)
             nums[next_pos], num, pos = num, nums[next_pos], next_pos
-            # print(nums, num, pos)
             if pos == start:
                 pos += 1
                 start += 1
