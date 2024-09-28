@@ -26,8 +26,6 @@ class MyCircularDeque:
         
         self.q[self.head] = value
         self.size += 1
-        # print("Insert Front: ", self.size, self.head, self.tail)
-        # print(self.q)
         return True
 
     def insertLast(self, value: int) -> bool:
@@ -41,8 +39,6 @@ class MyCircularDeque:
         
         self.q[self.tail] = value
         self.size += 1
-        # print("Insert End: ", self.size, self.head, self.tail)
-        # print(self.q)
         return True
 
 
@@ -56,8 +52,6 @@ class MyCircularDeque:
         if self.size == 0:
             self._reset()
         
-        # print("deleteFront: ", self.size, self.head, self.tail)
-        # print(self.q)
         return True
 
     def deleteLast(self) -> bool:
@@ -68,24 +62,18 @@ class MyCircularDeque:
         
         if self.size == 0:
             self._reset()
-        # print("deleteLast: ", self.size, self.head, self.tail)
-        # print(self.q)
         return True
         
 
     def getFront(self) -> int:
         if self.isEmpty():
             return -1
-        # print("getFront: ", self.size, self.head, self.tail)
-        # print(self.q)
         return self.q[self.head]
         
 
     def getRear(self) -> int:
         if self.isEmpty():
             return -1
-        # print("getRear: ", self.size, self.head, self.tail)
-        # print(self.q)
         return self.q[self.tail]
         
 
