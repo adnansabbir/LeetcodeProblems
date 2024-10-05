@@ -15,7 +15,6 @@ class Solution:
             if freq1[i] and freq2[i]:
                 matched += min(freq1[i], freq2[i])
 
-        # print(freq1, freq2)
         if matched == len(s1):
             return True
 
