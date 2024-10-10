@@ -11,6 +11,5 @@ class Solution:
             
             pos = bisect_left(m_stack, -num, key = lambda x: x[0])
             result = max(result, i - m_stack[pos][1])
-            # print(i, num, m_stack, pos)
 
         return result
