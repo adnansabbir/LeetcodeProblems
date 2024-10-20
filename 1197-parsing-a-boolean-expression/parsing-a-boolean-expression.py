@@ -1,6 +1,5 @@
 class Solution:
     def evaluate(self, logic: str, expr: List[str])-> bool:
-        # print('Evaluating', logic, expr)
         if logic == '!':
             return not expr[0]
         elif logic == '&':
@@ -31,8 +30,6 @@ class Solution:
                     ce_char = stack.pop()
                 stack.append(self.evaluate(lastLogic.pop(), current_expr))
                 current_expr = []
-            
-            # print(char, lastLogic, stack)
 
         return stack[0]
         
