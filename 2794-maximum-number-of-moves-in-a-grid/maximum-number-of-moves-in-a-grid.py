@@ -14,7 +14,6 @@ class Solution:
                     continue
                 if grid[next_row][next_col] > grid[row][col]:
                     result = max(result, maxMoveFromPos(next_row, next_col))
-            print((row, col), result, next_moves)
             return result + 1
 
         result = 0
