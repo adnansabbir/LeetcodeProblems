@@ -6,10 +6,6 @@ class Solution:
 
         @lru_cache(maxsize=None)
         def exp_count(i, total):
-            # key = f'{i}_{total}'
-            # if key in cache:
-            #     return cache[key]
-
             if i == len(nums):
                 return 1 if total == target else 0
             
