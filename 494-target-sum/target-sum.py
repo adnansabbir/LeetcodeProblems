@@ -2,8 +2,6 @@ from functools import lru_cache
 
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        cache = {}
-
         @lru_cache(maxsize=None)
         def exp_count(i, total):
             if i == len(nums):
