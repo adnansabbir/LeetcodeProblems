@@ -6,8 +6,8 @@ class Solution:
         
         result = 0
         for count in freq.values():
-            if count <= 2 == 0:
-                result += 2
+            if count <= 2:
+                result += count
             elif count % 2 == 0:
                 result += 2
             else:
