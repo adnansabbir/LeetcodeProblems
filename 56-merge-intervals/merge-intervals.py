@@ -14,9 +14,4 @@ class Solution:
                 max_end = max(max_end, en)
         
         result.append([min_start, max_end])
-        return result
-
-
-        print(intervals)
-        return []
-        
+        return result        
