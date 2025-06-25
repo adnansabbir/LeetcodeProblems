@@ -1,6 +1,9 @@
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
+        if str1 + str2 != str2 + str1:
+            return ''
         str1_len, str2_len = len(str1), len(str2)
+        
 
         def is_string_repetative(main_str, sub_str):
             if len(main_str) % len(sub_str) == 0:
