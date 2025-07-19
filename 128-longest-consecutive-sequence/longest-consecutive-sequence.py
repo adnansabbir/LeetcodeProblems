@@ -4,9 +4,6 @@ class Solution:
         longest_size = 1 if nums else 0
 
         def merge(start, end):
-            # print('Before')
-            # print('start', start)
-            # print('end', end)
             starting_num = start.get("start")
             ending_num = end.get("end")
 
@@ -19,16 +16,9 @@ class Solution:
             nsm[ending_num]['size'] = new_size
             nsm[ending_num]['start'] = starting_num
 
-            # print('\nAfter')
-            # print('start', start)
-            # print('end', end)
-
-            # print('New Size', new_size)
             return new_size
 
         for num in nums:
-            # print('\n\n', 'Working on ', num)
-            # not in seq than add it
             if num not in nsm:
                 nsm[num] = {"size": 1, "start": num, "end": num}
             else:
