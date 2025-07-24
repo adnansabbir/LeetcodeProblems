@@ -5,7 +5,6 @@ class Solution:
         has_zero = False
 
         def getMaxProduct(i, j):
-            print(i, j, nums[i:j])
             if not j - i:
                 return 0
             
