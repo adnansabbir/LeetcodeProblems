@@ -23,7 +23,6 @@ class Solution:
         width = widthRange[1] - widthRange[0] + 1
 
         result = [[] for _ in range(width)]
-        # print(widthRange, offset, width, result)
 
         q = [(root, offset)]
         while q:
