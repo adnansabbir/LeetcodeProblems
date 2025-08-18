@@ -8,7 +8,7 @@ class Solution:
             '+': operator.add,
             '-': operator.sub,
             '*': operator.mul,
-            '/': lambda x, y: x / y if y != 0 else None,  # need custom check for divide
+            '/': lambda x, y: x / y if y != 0 else None
         }
 
         def is_24(nums)-> bool:
