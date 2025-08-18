@@ -23,13 +23,7 @@ class Solution:
                         op_res = ops[o](num1, num2)
                         if op_res == None:
                             continue
-                        # if num1 == 8 and int(num2) == 0 and o == '/':
-                        #     print('')
-                        # if num1 == 3 and int(num2) == 2 and o == '-':
-                        #     print('')
                         new_nums = [n for idx, n in enumerate(nums) if idx not in (n1i, n2i)] + [op_res]
-                        # if num1 == 8 and num2 == 3 and o == '/' and 3 in new_nums and 8 in new_nums:
-                        #     print(op_res)
                         if math.isclose(op_res, 24, rel_tol=1e-5) and len(new_nums) == 1:
                             return True
                         if is_24(new_nums):
