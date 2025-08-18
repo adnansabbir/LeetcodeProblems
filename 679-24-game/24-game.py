@@ -24,7 +24,7 @@ class Solution:
                         if op_res == None:
                             continue
                         new_nums = [n for idx, n in enumerate(nums) if idx not in (n1i, n2i)] + [op_res]
-                        if math.isclose(op_res, 24, rel_tol=1e-5) and len(new_nums) == 1:
+                        if math.isclose(op_res, 24, rel_tol=1e-7) and len(new_nums) == 1:
                             return True
                         if is_24(new_nums):
                             return True
