@@ -17,8 +17,6 @@ class Solution:
         height = x2 - x1 + 1
         width = y2 - y1 + 1
 
-        # print((x1, y1), (x2, y2))
-        # print(height, width)
         return height * width
 
         
