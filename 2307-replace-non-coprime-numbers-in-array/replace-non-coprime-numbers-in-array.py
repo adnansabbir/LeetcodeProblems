@@ -1,4 +1,4 @@
-import math
+from math import gcd, lcm
 
 class Solution:
     def replaceNonCoprimes(self, nums: List[int]) -> List[int]:
@@ -8,8 +8,8 @@ class Solution:
 
         while stack:
             r, s = result.pop(), stack.pop()
-            if math.gcd(r,s) > 1:
-                new_val = math.lcm(r, s)
+            if gcd(r,s) > 1:
+                new_val = lcm(r, s)
                 if result:
                     stack.append(new_val)
                 else:
