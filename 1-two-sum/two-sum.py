@@ -3,11 +3,13 @@ class Solution:
         seen = {}
 
         for i, num in enumerate(nums):
-            target_rem = target - num
-            if target_rem in seen:
-                return [seen[target_rem], i]
+            complement = target - num
+            if complement in seen:
+                return [seen[complement], i]
             
-            if num not in seen:
-                seen[num] = i
+            # Add the current number to the map after checking for its complement.
+            # This avoids using the same element twice and correctly handles duplicates.
+            seen[num] = i
         
-        return []
+        # This part of the code is unreachable given the problem constraint
+        # that exactly one valid answer exists.
