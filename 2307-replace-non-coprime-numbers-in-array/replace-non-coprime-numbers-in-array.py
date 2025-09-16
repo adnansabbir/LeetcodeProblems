@@ -1,21 +1,23 @@
-from math import gcd, lcm
+# Optimized by gtp
+from math import gcd
+from typing import List
 
 class Solution:
     def replaceNonCoprimes(self, nums: List[int]) -> List[int]:
-        result = [nums[0]]
-        stack = nums[1:]
-        stack.reverse()
+        st = []
+        push = st.append
+        pop  = st.pop
 
-        while stack:
-            r, s = result.pop(), stack.pop()
-            if gcd(r,s) > 1:
-                new_val = lcm(r, s)
-                if result:
-                    stack.append(new_val)
-                else:
-                    result.append(new_val)
-            else:
-                result += [r, s]
-        return result
+        for x in nums:
+            cur = x
+            # cascade backward while non-coprime with top
+            while st:
+                g = gcd(st[-1], cur)
+                if g == 1:
+                    break
+                cur = (st[-1] // g) * cur  # lcm(st[-1], cur) without big intermediate
+                pop()                      # remove the merged top
+            push(cur)
+        return st
 
         
