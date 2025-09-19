@@ -1,3 +1,4 @@
+# Python level optimization from chatGPT. But it's runtime is lower then my 50%
 def _parse_cell(s, i):
     # s[i] is 'A'..'Z'; returns (next_index, row_idx, col_idx)
     y = ord(s[i]) - 65  # 'A' -> 0
