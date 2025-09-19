@@ -19,11 +19,11 @@ class Spreadsheet:
     def getValue(self, formula: str) -> int:
         cells = formula[1:].split('+')
         for i, c in enumerate(cells):
-            if c[0].isalpha():
-                x, y = cellStrToNum(c)
-                cells[i] = self.table[x][y]                
-            else:
+            if not c[0].isalpha():
                 cells[i] = int(c)
+            else:
+                x, y = cellStrToNum(c)
+                cells[i] = self.table[x][y]                                
 
         return sum(cells)
 
