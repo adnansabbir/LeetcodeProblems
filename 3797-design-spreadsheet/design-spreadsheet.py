@@ -12,10 +12,6 @@ class Spreadsheet:
     def setCell(self, cell: str, value: int) -> None:
         x, y = cellStrToNum(cell)
         self.table[x][y] = value
-        # print(cell, x, y, value)
-        # for r in self.table:
-        #     print(r)
-        # print('\n')
 
     def resetCell(self, cell: str) -> None:
         self.setCell(cell, 0)
