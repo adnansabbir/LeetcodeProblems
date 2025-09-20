@@ -9,7 +9,7 @@ class Router:
         self.count = {}
 
     def addPacket(self, source: int, destination: int, timestamp: int) -> bool:
-        key = (source, destination, timestamp)
+        key = self._encode(source, destination, timestamp)
         if key in self.packets:
             return False
 
@@ -45,6 +45,10 @@ class Router:
         right = bisect.bisect_right(timestamps, endTime)
         
         return right - left
+
+    def _encode(self, source: int, destination: int, timestamp: int) -> int:
+        # Encode uniquely into 1 number
+        return (source << 40) | (destination << 20) | timestamp
         
 
 
