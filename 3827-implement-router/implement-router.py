@@ -5,7 +5,7 @@ class Router:
     def __init__(self, memoryLimit: int):
         self.size = memoryLimit
         self.packetQ = deque()
-        self.packets = {}
+        self.packets = set()
         self.count = {}
 
     def addPacket(self, source: int, destination: int, timestamp: int) -> bool:
@@ -17,7 +17,7 @@ class Router:
             self.forwardPacket()
 
         self.packetQ.append(key)
-        self.packets[key] = (source, destination, timestamp)
+        self.packets.add(key)
 
         if destination not in self.count:
             self.count[destination] = deque()
@@ -30,8 +30,8 @@ class Router:
         if not len(self.packets):
             return []
         key = self.packetQ.popleft()
-        source, dest, time = self.packets[key]
-        del self.packets[key]
+        source, dest, time = self._decode(key)
+        self.packets.remove(key)
         self.count[dest].popleft()
         return [source, dest, time]
         
@@ -49,6 +49,18 @@ class Router:
     def _encode(self, source: int, destination: int, timestamp: int) -> int:
         # Encode uniquely into 1 number
         return (source << 40) | (destination << 20) | timestamp
+
+    def _decode(self, encoded: int) -> tuple[int, int, int]:
+        # Extract source (shift back 40 bits)
+        source = encoded >> 40
+
+        # Extract destination (mask out upper/lower bits, then shift back 20)
+        destination = (encoded >> 20) & ((1 << 20) - 1)
+
+        # Extract timestamp (lowest 20 bits)
+        timestamp = encoded & ((1 << 20) - 1)
+
+        return source, destination, timestamp
         
 
 
