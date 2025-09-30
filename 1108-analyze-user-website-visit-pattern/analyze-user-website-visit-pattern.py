@@ -30,6 +30,4 @@ class Solution:
                     elif comb < result[1]:
                         result = (pattern_freq[comb], comb)
         
-        # print("\n")
-        # print(pattern_freq)
         return result[1]
