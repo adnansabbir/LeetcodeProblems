@@ -16,9 +16,6 @@ class Solution:
                 if i == m-1 or j == n-1:
                     atlantic.append((i, j))
                     dp[i][j][1] = True
-        
-        # for l in dp:
-        #     print(l)
 
         #processing pacific
         while pacific:
@@ -45,11 +42,6 @@ class Solution:
                         if dp[nx][ny][1] == None and heights[nx][ny] >= heights[ax][ay]:
                             dp[nx][ny][1] = True
                             atlantic.append((nx, ny))
-        
-                            
-        # print('\n')
-        # for l in dp:
-        #     print(l)
         
         result = []
         for r in range(m):
