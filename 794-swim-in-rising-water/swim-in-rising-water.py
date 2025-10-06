@@ -18,7 +18,5 @@ class Solution:
                     if dp[x][y] == None or dp[x][y] > val:
                         dp[x][y] = val
                         q.append((x, y, val))
-                # print(q)
-                # print('')
 
         return dp[-1][-1]
