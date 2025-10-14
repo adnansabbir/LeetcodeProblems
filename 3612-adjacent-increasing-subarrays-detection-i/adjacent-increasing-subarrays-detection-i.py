@@ -17,7 +17,6 @@ class Solution:
                     incs.append((i-streak,i))
                 streak = 1
             if streak // 2 >= k:
-                return True
-        # print(incs)      
+                return True   
         return False
         
