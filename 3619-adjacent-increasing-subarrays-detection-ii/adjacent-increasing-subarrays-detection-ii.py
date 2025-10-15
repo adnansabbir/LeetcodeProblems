@@ -5,7 +5,6 @@ class Solution:
 
         result = 1
         nums.append(None)
-        # streak, streak_no, end_index
         last_streak = 1
         streak = 1
         for i in range(1, len(nums)):
