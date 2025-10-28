@@ -11,7 +11,6 @@ class Solution:
                 elif abs(left - right) == 1:
                     result += 1
             right -= num
-            # print(left, num, right)
             left += num
         
         return result
