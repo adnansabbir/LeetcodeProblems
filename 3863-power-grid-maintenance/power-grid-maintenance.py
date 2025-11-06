@@ -1,3 +1,5 @@
+from collections import deque
+
 class Solution:
     def processQueries(self, c: int, connections: List[List[int]], queries: List[List[int]]) -> List[int]:
 
@@ -21,7 +23,7 @@ class Solution:
             if node in visited:
                 continue
             
-            q = [node]
+            q = deque([node])
             grid_idx = len(grids)
             grids.append([])
 
@@ -29,7 +31,7 @@ class Solution:
             while q:
                 size = len(q)
                 for _ in range(size):
-                    curr_node = q.pop(0)
+                    curr_node = q.popleft()
                     conn_grid_map[curr_node] = grid_idx
                     grids[grid_idx].append(curr_node)
 
