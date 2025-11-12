@@ -57,4 +57,7 @@ class Solution:
         for i in range(1, len(nums)):
             if (op:= score_to_reduce_to_1(i)) != float('-inf'):
                 min_op_for_first_one = min(min_op_for_first_one, op)
-        return min_op_for_first_one + len(nums) - 1 if min_op_for_first_one != float('inf') else -1
+
+        if min_op_for_first_one != float('inf'):
+            return min_op_for_first_one + len(nums) - 1
+        return -1
