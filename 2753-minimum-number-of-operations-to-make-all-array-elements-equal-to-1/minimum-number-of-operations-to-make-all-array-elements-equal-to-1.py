@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
         # if there is 1 or 1s, we can make all the nums 1 on total_len - count(1)
@@ -19,6 +21,7 @@ class Solution:
             return -1
 
         # for each number we need to check which one gives the fastest 1
+        @lru_cache
         def score_to_reduce_to_1(idx, curr_num)-> int:
             result = float('-inf')
 
