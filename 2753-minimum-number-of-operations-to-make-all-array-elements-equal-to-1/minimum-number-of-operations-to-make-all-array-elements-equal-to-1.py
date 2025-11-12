@@ -21,7 +21,6 @@ class Solution:
             return -1
 
         # for each number we need to check which one gives the fastest 1
-        @lru_cache()
         def score_to_reduce_to_1(idx, curr_num)-> int:
             result = float('-inf')
 
