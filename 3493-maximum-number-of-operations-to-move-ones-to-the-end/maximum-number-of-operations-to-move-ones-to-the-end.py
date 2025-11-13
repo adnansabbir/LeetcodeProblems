@@ -7,11 +7,10 @@ class Solution:
             if s[i] == '0':
                 continue
             
+            result += ones
             if s[i+1] == '0':
-                result += (1 + ones)
+                result += 1
                 ones += 1
-            else:
-                result += ones
 
         return result
 
