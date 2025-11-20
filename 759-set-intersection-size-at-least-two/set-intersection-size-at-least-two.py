@@ -18,9 +18,5 @@ class Solution:
                     result.append(interval[1])    
             elif interval[0] == result[-1]:
                 result.append(interval[1])
-        
-        # print(intervals)
-        # print()
-        # print(result)
         return len(result)
         
