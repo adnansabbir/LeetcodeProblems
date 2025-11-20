@@ -7,8 +7,6 @@ class Solution:
             if not result or result[-1] < interval[0]:
                 result.append(interval[-1] - 1)
                 result.append(interval[-1])
-            elif interval[0] <= result[-2] and interval[1] >= result[1]:
-                continue
             elif interval[0] < result[-1]:
                 if interval[0] <= result[-2]:
                     continue
