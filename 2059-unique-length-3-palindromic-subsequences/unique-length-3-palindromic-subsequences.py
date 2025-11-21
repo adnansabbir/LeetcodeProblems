@@ -12,7 +12,6 @@ class Solution:
             else:
                 letter_idx_map[letter]['e'] = i
 
-        # print(letter_idx_map)
         for char in letter_idx_map.keys():
             if not letter_idx_map[char]['e']:
                 continue
