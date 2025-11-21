@@ -1,16 +1,24 @@
 from collections import defaultdict
-
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
-        letters = set(s)
+        letter_idx_map = {}
+
         result = 0
+        for i, letter in enumerate(s):
+            if not letter_idx_map.get(letter):
+                letter_idx_map[letter] = {'s': None, 'e': None}
+            if letter_idx_map[letter]['s'] == None:
+                letter_idx_map[letter]['s'] = i
+            else:
+                letter_idx_map[letter]['e'] = i
 
-        for letter in letters:
-            i, j = s.index(letter), s.rindex(letter)
-            between = set()
-
-            for k in range(i + 1, j):
-                between.add(s[k])
+        # print(letter_idx_map)
+        for char in letter_idx_map.keys():
+            if not letter_idx_map[char]['e']:
+                continue
             
-            result += len(between)
+            uniq = set()
+            for i in range(letter_idx_map[char]['s'] + 1, letter_idx_map[char]['e']):
+                uniq.add(s[i])
+            result += len(uniq)
         return result
