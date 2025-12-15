@@ -9,10 +9,8 @@ class Solution:
             if prices[i] == prices[i-1] -1:
                 length += 1
             else:
-                # print(length, (length*(length+1)//2))
                 result += (length*(length+1)//2)
                 length = 1
-        # print(length, (length*(length+1)//2))
         result += (length*(length+1)//2)
         return result
         
