@@ -1,15 +1,13 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        seen = {}
+        num_pos = {nums[0]: 0}
 
-        for i, num in enumerate(nums):
-            complement = target - num
-            if complement in seen:
-                return [seen[complement], i]
-            
-            # Add the current number to the map after checking for its complement.
-            # This avoids using the same element twice and correctly handles duplicates.
-            seen[num] = i
+        for i in range(1, len(nums)):
+            search_num = target - nums[i]
+            if search_num in num_pos:
+                return [num_pos[search_num], i]
+            else:
+                num_pos[nums[i]] = i
         
-        # This part of the code is unreachable given the problem constraint
-        # that exactly one valid answer exists.
+        return [-1, -1]
+        
