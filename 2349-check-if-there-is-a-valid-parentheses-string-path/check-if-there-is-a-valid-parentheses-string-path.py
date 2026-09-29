@@ -27,6 +27,5 @@ class Solution:
                     if inc == -1 and p_inc == 0:
                         continue
                     dp[i][j].add(p_inc + inc)
-            # print(dp[i])
         
         return 0 in dp[-1][-1]
