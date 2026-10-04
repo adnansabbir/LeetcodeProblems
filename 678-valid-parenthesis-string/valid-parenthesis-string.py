@@ -1,24 +1,22 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        open = 0
-
-        for char in s:
-            if char == "(" or char == "*":
-                open += 1
+        depth_range = [0, 0]
+        depth = 0
+        for ch in s:
+            if ch == '(':
+                depth_range[0] += 1
+                depth_range[1] += 1
+            elif ch == '*':
+                depth_range[0] -= 1
+                depth_range[1] += 1
             else:
-                open -= 1
-            if open < 0:
-                return False
-        if open == 0:
-            return True
+                depth_range[0] -= 1
+                depth_range[1] -= 1
 
-        closed = 0
-        for char in s[::-1]:
-            if char == ")" or char == "*":
-                closed += 1
-            else:
-                closed -= 1
-            if closed < 0:
+            if depth_range[1] < 0:
                 return False
 
-        return True
+            depth_range[0] = max(0, depth_range[0])
+            
+        return depth_range[0] <= 0 <= depth_range[1] 
+        
