@@ -1,16 +1,12 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        # look for missing closing paranthesis
-        stack = []
+        result = 0
+        depth = 0
+        for ch in s:
+            depth += 1 if ch == '(' else -1
 
-        for char in s:
-            if char == '(':
-                stack.append(')')
-            elif char == ')':
-                if stack and stack[-1] == char:
-                    stack.pop()
-                else:
-                    stack.append('(')
-
-        return len(stack)
+            if depth < 0:
+                result += -depth
+                depth = 0
         
+        return result + depth
