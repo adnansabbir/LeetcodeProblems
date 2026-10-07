@@ -4,7 +4,7 @@ class Solution:
         max_size = 0
         def generate_paranthesises(i = 0, curr = "", depth = 0):
             nonlocal max_size
-            if depth < 0:
+            if depth < 0 or len(curr) + len(s) - i < max_size:
                 return
 
             if i == len(s):
