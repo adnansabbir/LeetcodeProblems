@@ -1,11 +1,20 @@
 class Solution:
     def removeInvalidParentheses(self, s: str) -> list[str]:
         result = []
+        max_size = 0
         def generate_paranthesises(i = 0, curr = "", depth = 0):
-            if depth == 0:
-                result.append(curr)
+            nonlocal max_size
+            if depth < 0:
+                return
 
-            if i == len(s) or depth < 0:
+            if i == len(s):
+                if depth == 0:
+                    if len(curr) > max_size:
+                        max_size = len(curr)
+                        result.clear()
+
+                    if len(curr) == max_size:
+                        result.append(curr)
                 return
             
             c = s[i]
@@ -17,6 +26,4 @@ class Solution:
                 generate_paranthesises(i + 1, curr, depth)
         
         generate_paranthesises()
-        max_len = max([len(r) for r in result])
-        result = list(set([r for r in result if len(r) == max_len]))
-        return result
+        return list(set(result))
