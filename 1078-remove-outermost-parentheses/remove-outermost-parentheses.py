@@ -4,13 +4,9 @@ class Solution:
         result = ""
 
         for ch in s:
-            if ch == '(':
-                if depth != 0:
-                    result += ch
-                depth += 1
-            else:
-                if depth != 1:
-                    result += ch
-                depth -= 1
+            depth += 1 if ch == '(' else -1
+
+            if not ((depth == 1 and ch == '(') or (depth == 0 and ch == ')')):
+                result += ch
         return result
         
