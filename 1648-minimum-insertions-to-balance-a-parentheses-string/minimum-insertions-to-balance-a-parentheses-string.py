@@ -20,8 +20,6 @@ class Solution:
                 depth += 1
             else:
                 depth -= 0.5
-            
-            # print(s[:p+1], depth, result)
             p += 1
         
         depth -= 1
