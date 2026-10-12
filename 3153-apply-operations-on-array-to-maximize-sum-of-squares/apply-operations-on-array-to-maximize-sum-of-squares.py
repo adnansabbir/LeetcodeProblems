@@ -1,34 +1,35 @@
 class Solution:
     def maxSum(self, nums: List[int], k: int) -> int:
-        freq = [0]* max(nums).bit_length()
-        def add_frequency(num):
-            pointer = len(freq) - 1
-            while num:
-                freq[pointer] += num & 1
-                num = num >> 1
-                pointer -= 1
+        MOD = 10**9 + 7
+        max_bits = max(nums).bit_length()
+        bit_counts = [0] * max_bits
 
-        for num in nums:
-            add_frequency(num)
-        
-        # print(freq)
-        def get_largest_int():
-            # print(freq)
+        def add_bit_frequency(num):
+            bit_index = max_bits - 1
+
+            while num:
+                bit_counts[bit_index] += num & 1
+                num >>= 1
+                bit_index -= 1
+
+        def get_largest_number():
             num = 0
-            for i, f in enumerate(freq):
-                num = (num << 1)
-                # print('before if', num, bin(num))
-                if f:
-                    freq[i] -= 1
-                    num = num | 1
-                # print(i, f, num, bin(num), freq)
-            # print(num)
+
+            for bit_index, count in enumerate(bit_counts):
+                num <<= 1
+
+                if count > 0:
+                    bit_counts[bit_index] -= 1
+                    num |= 1
+
             return num
 
+        for num in nums:
+            add_bit_frequency(num)
+
         result = 0
-        for i in range(k):
-            num = get_largest_int()
-            result += num ** 2
-            result = result % (10**9 + 7)
+        for _ in range(k):
+            num = get_largest_number()
+            result = (result + num ** 2) % MOD
+
         return result
-        
