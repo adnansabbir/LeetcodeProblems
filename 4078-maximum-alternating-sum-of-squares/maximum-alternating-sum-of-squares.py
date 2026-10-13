@@ -11,7 +11,6 @@ class Solution:
         for i in range(n//2):
             first, second = n - i - 1, i
 
-            result += nums[first]**2
-            result -= nums[second]**2
+            result += (nums[first]**2 - nums[second]**2)
 
         return result
