@@ -24,11 +24,13 @@ class Solution:
                 
         n = len(nums)
         ans = 0     
-        for i in range(1, n + 1):
+        for i in range(1, math.isqrt(n) + 1):
             if n % i == 0:
-                if yes:= is_sortable(nums, i):
+                if is_sortable(nums, i):
                     ans += i
-                print(i, yes)
-                # ans += i
+
+                other = n // i
+                if other != i and is_sortable(nums, other):
+                    ans += other
         return ans
         
