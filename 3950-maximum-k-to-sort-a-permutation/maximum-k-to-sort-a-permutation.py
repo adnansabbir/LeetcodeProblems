@@ -4,10 +4,7 @@ class Solution:
         print(ans)
         for i in range(len(nums)):
             if nums[i] != i:
-                if ans == None:
-                    ans = i 
-                else:
-                    ans = (ans & i) & nums[i]
+                ans = (ans & i) & nums[i]
 
                 if ans == 0:
                     return 0
