@@ -1,16 +1,15 @@
 class Solution:
     def sortPermutation(self, nums: List[int]) -> int:
-
-        # 3 = 11
-        # 2 = 10
-        # 1 = 01
-        # 0 = 00
-        ans = None
+        ans = (1 << (len(nums).bit_length() + 2)) - 1
+        print(ans)
         for i in range(len(nums)):
             if nums[i] != i:
                 if ans == None:
                     ans = i 
                 else:
                     ans = (ans & i) & nums[i]
-        return 0 if ans == None else ans
+
+                if ans == 0:
+                    return 0
+        return 0 if ans > len(nums) else ans
         
