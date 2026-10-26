@@ -1,17 +1,21 @@
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
+    def combine(self, n: int, k: int) -> list[list[int]]:
         result = []
-
-        def collectCombination(curr: int, collected: List[int])-> None:
-            if len(collected) == k:
-                result.append(collected.copy())
+        # i = 0, [1,2], [1,3],[2]
+        def store_combination(i = 0, com = []): 
+            if len(com) == k:
+                result.append(com.copy())
                 return
-            
-            for i in range(curr, n + 1):
-                collected.append(i)
-                collectCombination(i+1, collected)
-                collected.pop()
+            if i > n:
+                return
 
-        collectCombination(1, [])
-        return result
-            
+            for j in range(i + 1, n + 1):
+                com.append(j)
+                store_combination(j, com)
+                com.pop()
+
+        
+        store_combination()
+        return result 
+
+        
